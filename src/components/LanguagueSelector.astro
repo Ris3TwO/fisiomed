@@ -1,0 +1,75 @@
+---
+interface LanguageOption {
+  code: string;
+  label: string;
+}
+
+const {
+  languages,
+  currentLang,
+  currentPath,
+}: {
+  languages?: LanguageOption[];
+  currentLang?: string;
+  currentPath?: string;
+} = Astro.props;
+---
+
+<div class="relative">
+  <button
+    id="language-selector"
+    class="cursor-pointer flex items-center font-display font-medium px-2 rounded bg-transparent text-light-cyan-600 border border-light-cyan-600 md:border-transparent hover:border-light-cyan-600 transition-colors duration-200"
+  >
+    <i class="ti ti-messages"></i>
+    <span class="mx-1 uppercase">
+      {currentLang}
+    </span>
+    <i class="ti ti-chevron-down"></i>
+  </button>
+
+  <div
+    id="language-options"
+    class="hidden absolute right-0 -bottom-24 w-16 rounded-md bg-light-cyan-600 shadow-lg z-50"
+  >
+    <div class="flex flex-col p-1 gap-1">
+      {
+        languages?.map(({ code, label }) => (
+          <a
+            href={`/${code}${currentPath?.replace(/^\/(en|es)/, "")}`}
+            class={`block px-1 py-2 text-center text-sm font-medium text-federal-blue-600 hover:bg-honolulu-blue-600 hover:text-white transition-colors duration-200 rounded-md ${
+              code === currentLang
+                ? "bg-honolulu-blue-600 text-light-cyan-600"
+                : ""
+            }`}
+          >
+            {label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  const setupLanguagueSwitch = () => {
+    const languageSelector = document.getElementById("language-selector");
+    const languageOptions = document.getElementById("language-options");
+
+    if (!languageSelector || !languageOptions) return;
+
+    const newSelector = languageSelector.cloneNode(true);
+    languageSelector.parentNode.replaceChild(newSelector, languageSelector);
+
+    newSelector.addEventListener("click", () => {
+      languageOptions.classList.toggle("hidden");
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupLanguagueSwitch);
+  } else {
+    setupLanguagueSwitch();
+  }
+
+  document.addEventListener("astro:page-load", setupLanguagueSwitch);
+</script>

@@ -2,6 +2,8 @@
 import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import { ClientRouter } from "astro:transitions";
+import Footer from "../components/Footer.astro";
+import Alert from "../components/Alert.astro";
 
 const { title } = Astro.props;
 ---
@@ -53,9 +55,11 @@ const { title } = Astro.props;
     </style>
   </head>
   <body class="scroll-smooth">
+    <Alert />
     <Nav transition:persist />
     <main>
       <slot />
     </main>
+    <Footer />
   </body>
 </html>

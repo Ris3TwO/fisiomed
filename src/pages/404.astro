@@ -1,0 +1,29 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Layout from "../layouts/Layout.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout>
+  <section
+    class="min-h-[100dvh] flex flex-col items-center justify-center text-center bg-black text-white px-4 -my-[72px] md:-my-[90px]"
+  >
+    <h1 class="text-3xl mb-4">404 - {t("404.title")}</h1>
+    <p class="prase prase-lg">
+      {t("404.subtitle")}
+    </p>
+    <p>
+      {t("404.email")}
+      <a href="mailto:contact@fisiomed.online">contact@fisiomed.online</a>
+    </p>
+
+    <a
+      href={`/${lang}/`}
+      class="mt-8 px-4 py-2 bg-federal-blue-600 text-white rounded-lg hover:bg-honolulu-blue-600 transition-colors duration-200"
+    >
+      {t("404.button")}
+    </a>
+  </section>
+</Layout>

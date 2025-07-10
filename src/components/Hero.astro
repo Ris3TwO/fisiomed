@@ -1,26 +1,33 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section
-  class="min-h-screen relative isolate overflow-hidden bg-[url(/assets/img/hero-bg.webp)] bg-center bg-no-repeat bg-cover text-white py-24 sm:py-32 -my-20 md:-my-24 flex flex-col justify-center items-center text-center"
+  class="min-h-[100dvh] relative isolate overflow-hidden bg-[url(/assets/img/hero-bg.webp)] bg-center bg-no-repeat bg-cover text-white py-24 -my-[72px] md:-my-[120px] lg:-my-[90px] flex flex-col justify-center items-center text-center"
 >
   <!-- overlay -->
   <div class="absolute bg-black inset-0 -z-10 opacity-70"></div>
 
   <div class="min-h-min mx-auto max-w-7xl xl:max-w-8xl px-6 lg:px-8">
-    <h1 class="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight transition-all duration-200">
-      Nuestra profesión, su esperanza
+    <h1
+      class="text-light-cyan-600 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight transition-all duration-200"
+    >
+      {t("hero.title")}
     </h1>
-    <p class="mt-6 text-lg sm:text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto">
-      Para quienes estudiamos fisioterapia, esta carrera representa mucho más
-      que una profesión, es una vocación que nos conecta con las necesidades,
-      desafios y esperanzas de las personas.
+    <p
+      class="mt-6 text-lg sm:text-xl md:text-2xl text-light-cyan-400 max-w-2xl mx-auto"
+    >
+      {t("hero.subtitle")}
     </p>
-    <div class="absolute bottom-20 md:bottom-30 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <div
+      class="absolute bottom-[16%] md:bottom-30 left-1/2 transform -translate-x-1/2 animate-bounce"
+    >
       <a
-        href="#last-posts"
-        class="animate-bounce rounded-full transition border border-honolulu-blue-600 px-3 py-2 text-2xl hover:bg-honolulu-blue-600 hover:text-white"
+        href="#next-section"
+        class="animate-bounce rounded-full transition border border-honolulu-blue-600 px-2 py-4 text-2xl hover:bg-honolulu-blue-600 hover:text-white"
       >
         <i class="ti ti-arrow-down"></i>
       </a>

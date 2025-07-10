@@ -1,0 +1,15 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div
+  class="sticky top-0 z-50 bg-yellow-100 text-yellow-800 text-xs sm:text-sm md:text-md font-medium text-center py-2 px-4 flex items-center justify-center gap-2 shadow-md transition-all duration-300"
+>
+  <i class="ti ti-exclamation-circle text-2xl"></i>
+  <span>
+    {t("alert.message")}
+  </span>
+</div>
