@@ -1,0 +1,35 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "twitter": "Twitter"
+  },
+  "hero": {
+    "title": "Our profession, your hope",
+    "subtitle": "For those of us who study physiotherapy, this career represents much more than a profession, it is a vocation that connects us to the needs, challenges and hopes of people."
+  },
+  "404": {
+    "title": "Page not found",
+    "subtitle": "Sorry, the page you are looking for does not exist. Please check the URL or return to the homepage.",
+    "email": "If you have any questions, please contact us at",
+    "button": "Go to Home"
+  },
+  "posts": {
+    "title": "Latest publications",
+    "allPosts": "View all articles",
+    "category": "Category",
+    "postTitle": "Article title"
+  },
+  "suggestedBooks": {
+    "title": "Suggested books"
+  },
+  "categories": {
+    "title": "Our categories"
+  },
+  "about": {
+    "message": "Section still under development. Here you will find information about the team, the mission and vision of FISIO MED UNERS, as well as our support networks."
+  },
+  "alert": {
+    "message": "We are working on it! Some parts of the site are still under development."
+  }
+}

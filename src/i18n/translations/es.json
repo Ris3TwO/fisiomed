@@ -1,0 +1,35 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre nosotros",
+    "twitter": "Twitter"
+  },
+  "hero": {
+    "title": "Nuestra profesión, su esperanza",
+    "subtitle": "Para quienes estudiamos fisioterapia, esta carrera representa mucho más que una profesión, es una vocación que nos conecta con las necesidades, desafios y esperanzas de las personas."
+  },
+  "404": {
+    "title": "Página no encontrada",
+    "subtitle": "Lo sentimos, la página que buscas no existe. Por favor, verifica la URL o regresa a la página de inicio.",
+    "email": "Si tienes alguna pregunta, por favor contáctanos en",
+    "button": "Ir al Inicio"
+  },
+  "posts": {
+    "title": "Publicaciones recientes",
+    "allPosts": "Ver todos los artículos",
+    "category": "Categoria",
+    "postTitle": "Título del artículo"
+  },
+  "about": {
+    "message": "Sección aún en desarrollo. Aquí se mostrará información sobre el equipo, la misión y visión de FISIO MED UNERS, así como nuestras redes de ayuda."
+  },
+  "suggestedBooks": {
+    "title": "Libros sugeridos"
+  },
+  "categories": {
+    "title": "Nuestras categorías"
+  },
+  "alert": {
+    "message": "¡Estamos trabajando en ello! Algunas partes del sitio aún están en desarrollo."
+  }
+}
