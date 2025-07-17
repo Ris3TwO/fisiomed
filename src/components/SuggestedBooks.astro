@@ -6,34 +6,81 @@ const t = useTranslations(lang);
 ---
 
 <section
-  class="py-20 md:py-20 xl:py-30 px-4 xl:px-12 bg-black text-light-cyan-600"
+  class="bg-cover bg-[url(/assets/img/suggested-books.webp)] text-light-cyan-600"
 >
-  <div class="max-w-7xl mx-auto">
-    <h2 class="text-center text-4xl md:text-5xl xl:text-7xl uppercase">
-      {t("suggestedBooks.title")}
-    </h2>
+  <div class="py-20 md:py-20 xl:py-30 px-4 xl:px-12 bg-black/70">
+    <div class="container px-6 py-10 lg:px-0 lg:py-0 mx-auto">
+      <h2 class="text-center text-4xl md:text-5xl xl:text-7xl uppercase">
+        {t("suggestedBooks.title")}
+      </h2>
 
-    <div class="flex flex-col md:grid md:grid-cols-2 gap-4 mt-4 md:mt-8 lg:mt-12">
-      <p class="text-lg md:text-xl">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio magni in
-        atque, rerum harum deserunt ea, quibusdam sint inventore sed suscipit
-        impedit, dolores distinctio fugiat non error ullam nesciunt est!
+      <p
+        class="mt-4 text-gray-500 xl:mt-6 dark:text-gray-300 text-center max-w-2xl mx-auto"
+      >
+        {t("suggestedBooks.subtitle")}
       </p>
-      <div>
-        <ul class="list-disc pl-6 mt-4 space-y-2">
-          <li>
-            <strong>Libro 1:</strong> Descripción breve del libro 1.
-          </li>
-          <li>
-            <strong>Libro 2:</strong> Descripción breve del libro 2.
-          </li>
-          <li>
-            <strong>Libro 3:</strong> Descripción breve del libro 3.
-          </li>
-          <li>
-            <strong>Libro 4:</strong> Descripción breve del libro 4.
-          </li>
-        </ul>
+
+      <div
+        class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3"
+      >
+        {
+          Array.from({ length: 6 }).map((_, index) => (
+            <div class="p-8 space-y-3 border-2 border-federal-blue-400 dark:border-federal-blue-300 rounded-xl bg-non-photo-blue-500 dark:bg-non-photo-blue-700">
+              <span class="inline-block text-honolulu-blue-500 dark:honolulu-blue-400">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-8 h-8"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+                  />
+                </svg>
+              </span>
+
+              <h1 class="text-xl font-semibold text-gray-700 capitalize dark:text-federal-blue-300">
+                Random Book {index + 1}
+              </h1>
+
+              <p class="text-pacific-cyan-500 dark:text-pacific-cyan-300">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Provident ab nulla quod dignissimos vel non corrupti doloribus
+                voluptatum eveniet
+              </p>
+
+              <a
+                href="#"
+                class="inline-flex p-2 text-honolulu-blue-500 capitalize transition-colors duration-300 transform bg-blue-100 dark:hover:bg-light-cyan-600 rounded-full border rtl:-scale-x-100 dark:bg-blue-500 dark:text-white hover:underline hover:text-blue-600 dark:hover:text-blue-500"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-6 h-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </a>
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>

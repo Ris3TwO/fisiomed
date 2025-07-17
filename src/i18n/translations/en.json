@@ -2,7 +2,7 @@
   "nav": {
     "home": "Home",
     "about": "About",
-    "twitter": "Twitter"
+    "login": "Log In"
   },
   "hero": {
     "title": "Our profession, your hope",
@@ -21,13 +21,18 @@
     "postTitle": "Article title"
   },
   "suggestedBooks": {
-    "title": "Suggested books"
+    "title": "Recommended books",
+    "subtitle": "Explore our selection of essential books for those starting out in the world of physiotherapy. Practical, theoretical and up-to-date resources that will accompany you in your academic and professional training."
   },
   "categories": {
     "title": "Our categories"
   },
   "about": {
     "message": "Section still under development. Here you will find information about the team, the mission and vision of FISIO MED UNERS, as well as our support networks."
+  },
+  "team": {
+    "title": "Nuestro equipo",
+    "subtitle": "Conoce a los profesionales detrás de FISIO MED UNERS, comprometidos con tu bienestar y salud."
   },
   "alert": {
     "message": "We are working on it! Some parts of the site are still under development."

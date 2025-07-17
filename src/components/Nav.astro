@@ -1,6 +1,7 @@
 ---
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import LanguagueSelector from "./LanguagueSelector.astro";
+import { BACKEND_URL } from "astro:env/server";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -56,6 +57,14 @@ const languages = [
           currentPath={currentPath}
         />
       </div>
+
+      <a
+        href={`${BACKEND_URL}/wp-admin/`}
+        class="nav-link font-medium text-light-cyan-600 hover:text-honolulu-blue-600 hover:underline transition-colors duration-200"
+      >
+        {t("nav.login")}
+        <i class="ti ti-login-2"></i>
+      </a>
 
       <!-- Mobile Menu Button -->
       <button

@@ -2,7 +2,7 @@
   "nav": {
     "home": "Inicio",
     "about": "Sobre nosotros",
-    "twitter": "Twitter"
+    "login": "Ingresar"
   },
   "hero": {
     "title": "Nuestra profesión, su esperanza",
@@ -24,10 +24,15 @@
     "message": "Sección aún en desarrollo. Aquí se mostrará información sobre el equipo, la misión y visión de FISIO MED UNERS, así como nuestras redes de ayuda."
   },
   "suggestedBooks": {
-    "title": "Libros sugeridos"
+    "title": "Libros recomendados",
+    "subtitle": "Explora nuestra selección de libros esenciales para quienes inician en el mundo de la fisioterapia. Recursos prácticos, teóricos y actualizados que te acompañarán en tu formación académica y profesional."
   },
   "categories": {
     "title": "Nuestras categorías"
+  },
+  "team": {
+    "title": "Nuestro equipo",
+    "subtitle": "Conoce a quienes cuidan de tu salud en FisioMed UNERS."
   },
   "alert": {
     "message": "¡Estamos trabajando en ello! Algunas partes del sitio aún están en desarrollo."
