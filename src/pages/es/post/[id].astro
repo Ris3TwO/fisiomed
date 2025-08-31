@@ -1,13 +1,13 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import { getPostById } from "../../../services/wp";
-import type { Post } from "../../../types/wp";
+import type { WpPost } from "../../../types/wp";
 
 const { id } = Astro.params;
 
 if (!id) return Astro.redirect("/404");
 
-const post: Post = await getPostById(id);
+const post: WpPost = await getPostById(id);
 ---
 
 <Layout title={`${post.title}`}>
