@@ -2,13 +2,19 @@
 import { defineConfig, envField } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
+import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  output: "static",
+  output: "server",
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+  }),
   i18n: {
     locales: ["es", "en"],
     defaultLocale: "es",
@@ -18,8 +24,16 @@ export default defineConfig({
   },
   env: {
     schema: {
-      BACKEND_URL: envField.string({ context: "server", access: "public", optional: true }),
-      BACKEND_API_URL: envField.string({ context: "server", access: "public", optional: true }),
-    }
-  }
+      BACKEND_URL: envField.string({
+        context: "server",
+        access: "public",
+        optional: true,
+      }),
+      BACKEND_API_URL: envField.string({
+        context: "server",
+        access: "public",
+        optional: true,
+      }),
+    },
+  },
 });

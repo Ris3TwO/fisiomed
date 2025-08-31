@@ -1,8 +1,12 @@
 ---
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getCategories } from "../services/wp";
+import type { WpCategory } from "../types/wp";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const categories: WpCategory[] = await getCategories();
 ---
 
 <section class="py-20 lg:py-30 max-w-7xl mx-auto px-4 xl:px-0">
@@ -33,17 +37,19 @@ const t = useTranslations(lang);
     class="mt-8 md:mt-20 flex flex-col md:grid md:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 lg:gap-x-6 gap-y-8 mx-4 lg:mx-0"
   >
     {
-      Array.from({ length: 4 }).map((_, index) => (
+      categories.map((category, index) => (
         <article class="relative hover:cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 text-light-cyan-600 hover:text-honolulu-blue-600">
           <img
-            src={`https://picsum.photos/800/1200?random=${index}`}
-            alt={`Category ${index + 1}`}
+            src={category.categoryAdditionalData?.image?.node?.sourceUrl || `https://picsum.photos/800/1200?random=${index}`}
+            alt={category.name}
             class="aspect-4/5 object-cover w-full h-auto rounded-lg"
             loading="lazy"
+            width="400"
+            height="600"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70 rounded-lg" />
           <h3 class="absolute bottom-4 left-4 uppercase text-xl font-semibold mt-4 ">
-            Categoría {index + 1}
+            {category.name}
           </h3>
         </article>
       ))

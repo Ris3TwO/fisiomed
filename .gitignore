@@ -1,3 +1,6 @@
+# Vercel deployment directory
+.vercel/
+
 # build output
 dist/
 

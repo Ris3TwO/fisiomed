@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@plugin "@midudev/tailwind-animations";
+
 @theme {
   /* Colores personalizados - Paleta completa */
   /* Federal Blue */
