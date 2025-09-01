@@ -7,8 +7,6 @@ const t = useTranslations(lang);
 import { getCollection } from "astro:content";
 
 const books = await getCollection("books");
-
-export const prerender = true;
 ---
 
 <section
