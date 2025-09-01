@@ -2,7 +2,7 @@
 import { defineConfig, envField } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
-import vercelServerless from "@astrojs/vercel";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
@@ -10,7 +10,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   output: "static",
-  adapter: vercelServerless(),
+  adapter: vercel({}),
   i18n: {
     locales: ["es", "en"],
     defaultLocale: "es",
