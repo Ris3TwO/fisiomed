@@ -10,11 +10,11 @@ import Layout from "../../layouts/Layout.astro";
 <Layout title="¡Bienvenido a Fisio MED!">
   <Hero />
 
-  <LastPosts />
+  <LastPosts server:defer />
 
   <SuggestedBooks />
 
-  <PostsCategories />
+  <PostsCategories server:defer />
 
   <Team />
 </Layout>
