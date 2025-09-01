@@ -1,8 +1,7 @@
-// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
+import { BACKEND_URL } from "astro:env/server";
 import type { GetCategoriesResponse } from "../types/wp";
 
-const API_URL = import.meta.env.BACKEND_API_URL;
+const API_URL = BACKEND_URL || "";
 
 export const getPosts = async (first = 100) => {
   const query = `
@@ -169,7 +168,10 @@ export const getCategories = async () => {
     throw new Error(`HTTP error! status: ${res.status} - ${errorText}`);
   }
 
-  const response = (await res.json()) as { data: GetCategoriesResponse; errors?: any[] };
+  const response = (await res.json()) as {
+    data: GetCategoriesResponse;
+    errors?: any[];
+  };
 
   if (response.errors) {
     console.error("GraphQL errors:", response.errors);
