@@ -9,8 +9,6 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const posts: WpPosts[] = await getPosts(6);
-
-export const prerender = false;
 ---
 
 <section

@@ -3,8 +3,6 @@ import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
-export const prerender = true;
 ---
 
 <section class="bg-white dark:bg-non-photo-blue-600 dark:text-black py-20 md:py-20 xl:py-30 px-4 xl:px-12">

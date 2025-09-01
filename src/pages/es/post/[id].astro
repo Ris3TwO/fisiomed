@@ -8,8 +8,6 @@ const { id } = Astro.params;
 if (!id) return Astro.redirect("/404");
 
 const post: WpPost = await getPostById(id);
-
-export const prerender = false;
 ---
 
 <Layout title={`${post.title}`}>
