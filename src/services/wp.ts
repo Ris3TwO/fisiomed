@@ -1,7 +1,7 @@
-import { BACKEND_URL } from "astro:env/server";
+import { BACKEND_API_URL } from "astro:env/server";
 import type { GetCategoriesResponse } from "../types/wp";
 
-const API_URL = BACKEND_URL || "";
+const API_URL = BACKEND_API_URL || "";
 
 export const getPosts = async (first = 100) => {
   const query = `
