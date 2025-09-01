@@ -12,4 +12,19 @@ const books = defineCollection({
   }),
 });
 
-export const collections = { books };
+const teams = defineCollection({
+  schema: z.object({
+    name: z.string(),
+    position: z.object({
+      es: z.string(),
+      en: z.string(),
+    }),
+    img: z.string(),
+    bio: z.object({
+      es: z.string(),
+      en: z.string(),
+    }),
+  }),
+});
+
+export const collections = { books, teams };

@@ -1,10 +1,9 @@
 ---
+import { getCollection } from "astro:content";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
-import { getCollection } from "astro:content";
 
 const books = await getCollection("books");
 
