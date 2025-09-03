@@ -52,13 +52,15 @@ const Categories = () => {
 
         <div class="justify-self-end">
           <button
-            name="previous"
+            name="previousBooks"
+            aria-label="Go to previous books"
             class="text-center w-12 h-12 lg:w-16 lg:h-16 border border-honolulu-blue-600 rounded-full text-honolulu-blue-600 hover:cursor-pointer hover:text-light-cyan-600 transition-colors duration-200 hover:bg-honolulu-blue-600 mr-1 md:mr-2"
           >
             <i class="ti ti-chevron-left text-3xl"></i>
           </button>
           <button
-            name="next"
+            name="nextBooks"
+            aria-label="Go to next books"
             class="text-center w-12 h-12 lg:w-16 lg:h-16 border border-honolulu-blue-600 rounded-full text-honolulu-blue-600 hover:cursor-pointer hover:text-light-cyan-600 transition-colors duration-200 hover:bg-honolulu-blue-600"
           >
             <i class="ti ti-chevron-right text-3xl"></i>
