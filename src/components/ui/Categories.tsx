@@ -51,10 +51,16 @@ const Categories = () => {
         </h2>
 
         <div class="justify-self-end">
-          <button class="text-center w-12 h-12 lg:w-16 lg:h-16 border border-honolulu-blue-600 rounded-full text-honolulu-blue-600 hover:cursor-pointer hover:text-light-cyan-600 transition-colors duration-200 hover:bg-honolulu-blue-600 mr-1 md:mr-2">
+          <button
+            name="previous"
+            class="text-center w-12 h-12 lg:w-16 lg:h-16 border border-honolulu-blue-600 rounded-full text-honolulu-blue-600 hover:cursor-pointer hover:text-light-cyan-600 transition-colors duration-200 hover:bg-honolulu-blue-600 mr-1 md:mr-2"
+          >
             <i class="ti ti-chevron-left text-3xl"></i>
           </button>
-          <button class="text-center w-12 h-12 lg:w-16 lg:h-16 border border-honolulu-blue-600 rounded-full text-honolulu-blue-600 hover:cursor-pointer hover:text-light-cyan-600 transition-colors duration-200 hover:bg-honolulu-blue-600">
+          <button
+            name="next"
+            class="text-center w-12 h-12 lg:w-16 lg:h-16 border border-honolulu-blue-600 rounded-full text-honolulu-blue-600 hover:cursor-pointer hover:text-light-cyan-600 transition-colors duration-200 hover:bg-honolulu-blue-600"
+          >
             <i class="ti ti-chevron-right text-3xl"></i>
           </button>
         </div>
