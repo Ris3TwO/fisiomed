@@ -6,8 +6,16 @@ const t = useTranslations(lang);
 ---
 
 <section
-  class="min-h-[100dvh] relative isolate overflow-hidden bg-[url(/assets/img/hero-bg.webp)] bg-center bg-no-repeat bg-cover text-white py-24 -my-[72px] md:-my-[120px] lg:-my-[90px] flex flex-col justify-center items-center text-center"
+  class="min-h-[100dvh] relative isolate overflow-hidden text-white py-24 -my-[72px] md:-my-[120px] lg:-my-[90px] flex flex-col justify-center items-center text-center"
 >
+  <img
+    src="/assets/img/hero-bg.webp"
+    alt="Descripción de la imagen de fondo"
+    class="absolute inset-0 w-full h-full object-cover -z-10"
+    fetchpriority="high"
+    loading="eager"
+  />
+
   <!-- overlay -->
   <div class="absolute bg-black inset-0 -z-10 opacity-70"></div>
 
