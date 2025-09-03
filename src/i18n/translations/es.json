@@ -18,7 +18,8 @@
     "title": "Publicaciones recientes",
     "allPosts": "Ver todos los artículos",
     "category": "Categoria",
-    "postTitle": "Título del artículo"
+    "postTitle": "Título del artículo",
+    "noPosts": "No hay artículos disponibles"
   },
   "about": {
     "message": "Sección aún en desarrollo. Aquí se mostrará información sobre el equipo, la misión y visión de FISIO MED UNERS, así como nuestras redes de ayuda."
@@ -28,7 +29,8 @@
     "subtitle": "Explora nuestra selección de libros esenciales para quienes inician en el mundo de la fisioterapia. Recursos prácticos, teóricos y actualizados que te acompañarán en tu formación académica y profesional."
   },
   "categories": {
-    "title": "Nuestras categorías"
+    "title": "Nuestras categorías",
+    "noCategories": "No hay categorías disponibles"
   },
   "team": {
     "title": "Nuestro equipo",

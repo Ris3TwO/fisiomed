@@ -21,13 +21,13 @@ export default defineConfig({
   },
   env: {
     schema: {
-      BACKEND_URL: envField.string({
-        context: "server",
+      PUBLIC_BACKEND_URL: envField.string({
+        context: "client",
         access: "public",
         optional: true,
       }),
-      BACKEND_API_URL: envField.string({
-        context: "server",
+      PUBLIC_BACKEND_API_URL: envField.string({
+        context: "client",
         access: "public",
         optional: true,
       }),

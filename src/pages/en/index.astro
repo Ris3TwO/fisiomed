@@ -1,13 +1,15 @@
 ---
-import Hero from "../../components/Hero.astro";
-import LastPosts from "../../components/LastPosts.astro";
-import PostsCategories from "../../components/PostsCategories.astro";
-import SuggestedBooks from "../../components/SuggestedBooks.astro";
-import Team from "../../components/Team.astro";
-import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/sections/Hero.astro";
+import LastPosts from "../../components/sections/LastPosts.astro";
+import PostsCategories from "../../components/sections/PostsCategories.astro";
+import SuggestedBooks from "../../components/sections/SuggestedBooks.astro";
+import Team from "../../components/sections/Team.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+
 ---
 
-<Layout title="¡Bienvenido a Fisio MED!">
+<BaseLayout title="¡Bienvenido a Fisio MED!">
   <Hero />
 
   <LastPosts server:defer />
@@ -17,4 +19,4 @@ import Layout from "../../layouts/Layout.astro";
   <PostsCategories server:defer />
 
   <Team />
-</Layout>
+</BaseLayout>

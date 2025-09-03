@@ -1,13 +1,18 @@
-import { BACKEND_API_URL } from "astro:env/server";
-import type { GetCategoriesResponse } from "../types/wp";
+import { PUBLIC_BACKEND_URL, PUBLIC_BACKEND_API_URL } from "astro:env/client";
+import type { GetCategoriesResponse } from "../../types/wp";
 
-const API_URL = BACKEND_API_URL || "";
+const API_URL = `${PUBLIC_BACKEND_URL}${PUBLIC_BACKEND_API_URL}`;
 
-export const getPosts = async (first = 100) => {
+export const getPosts = async (
+  first = 100,
+  language: string | null = null,
+  after: string | null = null
+) => {
   const query = `
-    query GetPosts($first: Int!) {
-      posts(first: $first) {
+    query GetPosts($first: Int!, $language: LanguageCodeFilterEnum, $after: String) {
+      posts(first: $first, where: { language: $language }, after: $after) {
         edges {
+          cursor
           node {
             postId
             featuredImage {
@@ -27,9 +32,29 @@ export const getPosts = async (first = 100) => {
             }
           }
         }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
       }
     }
   `;
+
+  const variables: {
+    first: number;
+    language?: string;
+    after?: string;
+  } = {
+    first,
+  };
+
+  if (language) {
+    variables.language = language;
+  }
+
+  if (after) {
+    variables.after = after;
+  }
 
   const res = await fetch(API_URL, {
     method: "POST",
@@ -39,9 +64,7 @@ export const getPosts = async (first = 100) => {
     },
     body: JSON.stringify({
       query: query,
-      variables: {
-        first: first,
-      },
+      variables: variables,
     }),
   });
 
@@ -58,7 +81,7 @@ export const getPosts = async (first = 100) => {
     throw new Error("GraphQL query failed: " + response.errors[0].message);
   }
 
-  return response.data.posts.edges;
+  return response.data.posts;
 };
 
 export const getPostById = async (id: string) => {
@@ -134,7 +157,50 @@ export const getPostById = async (id: string) => {
   return response.data.post;
 };
 
-export const getCategories = async () => {
+export const getCategories = async (
+  first = 100,
+  language: string | null = null,
+  after: string | null = null
+) => {
+  const query = `
+    query GetCategories($first: Int!, $language: LanguageCodeFilterEnum, $after: String) {
+      categories(first: $first, where: { language: $language }, after: $after) {
+        nodes {
+          categoryId
+          name
+          slug
+          categoryAdditionalData {
+            image {
+              node {
+                sourceUrl(size: LARGE)
+              }
+            }
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  `;
+
+  const variables: {
+    first: number;
+    language?: string;
+    after?: string;
+  } = {
+    first,
+  };
+
+  if (language) {
+    variables.language = language;
+  }
+
+  if (after) {
+    variables.after = after;
+  }
+
   const res = await fetch(API_URL, {
     method: "POST",
     headers: {
@@ -142,24 +208,8 @@ export const getCategories = async () => {
       Accept: "application/json",
     },
     body: JSON.stringify({
-      query: `
-        query GetCategories {
-          categories {
-            nodes {
-              categoryId
-              name
-              slug
-              categoryAdditionalData {
-                image {
-                  node {
-                    sourceUrl(size: LARGE)
-                  }
-                }
-              }
-            }
-          }
-        }
-      `,
+      query: query,
+      variables: variables,
     }),
   });
 
@@ -178,5 +228,5 @@ export const getCategories = async () => {
     throw new Error("GraphQL query failed: " + response.errors[0].message);
   }
 
-  return response.data.categories.nodes;
+  return response.data.categories;
 };

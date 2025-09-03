@@ -18,14 +18,16 @@
     "title": "Latest publications",
     "allPosts": "View all articles",
     "category": "Category",
-    "postTitle": "Article title"
+    "postTitle": "Article title",
+    "noPosts": "No articles available"
   },
   "suggestedBooks": {
     "title": "Recommended books",
     "subtitle": "Explore our selection of essential books for those starting out in the world of physiotherapy. Practical, theoretical and up-to-date resources that will accompany you in your academic and professional training."
   },
   "categories": {
-    "title": "Our categories"
+    "title": "Our categories",
+    "noCategories": "No categories available"
   },
   "about": {
     "message": "Section still under development. Here you will find information about the team, the mission and vision of FISIO MED UNERS, as well as our support networks."

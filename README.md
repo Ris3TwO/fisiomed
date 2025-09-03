@@ -25,8 +25,8 @@ Inside of your Astro project, you'll see the following folders and files:
 │   │   └── astro.svg
 │   ├── components
 │   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
+│   ├── BaseLayouts
+│   │   └── BaseLayout.astro
 │   └── pages
 │       └── index.astro
 └── package.json

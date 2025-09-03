@@ -63,6 +63,10 @@ export interface WpCategory {
 
 export interface WpCategoryEdge {
   nodes: WpCategory[];
+  pageInfo: {
+    hasNextPage: boolean;
+    endCursor: string | null;
+  };
 }
 
 export interface GetCategoriesResponse {

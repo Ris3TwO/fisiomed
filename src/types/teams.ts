@@ -11,7 +11,7 @@ export interface TeamMember {
   };
 }
 
-export interface TeamSectionProps {
+export interface TeamsProps {
   teams: TeamMember[];
   translations: {
     title: string;

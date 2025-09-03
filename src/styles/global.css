@@ -3,7 +3,6 @@
 @plugin "@midudev/tailwind-animations";
 
 @theme {
-  /* Colores personalizados - Paleta completa */
   /* Federal Blue */
   --color-federal-blue-100: #010113;
   --color-federal-blue-200: #010226;
@@ -58,6 +57,17 @@
   --color-light-cyan-700: #dff6fb;
   --color-light-cyan-800: #e9f9fc;
   --color-light-cyan-900: #f4fcfe;
+
+  /* Purpureus */
+  --color-purpureus-100: #3b0838;
+  --color-purpureus-200: #6e1368;
+  --color-purpureus-300: #981b90;
+  --color-purpureus-400: #a71ea0;
+  --color-purpureus-500: #b123aa;
+  --color-purpureus-600: #c550be;
+  --color-purpureus-700: #d27dcb;
+  --color-purpureus-800: #e0a9da;
+  --color-purpureus-900: #f7ebf6;
 
   /* Fuentes personalizadas */
   --font-sans: "Roboto", sans-serif;

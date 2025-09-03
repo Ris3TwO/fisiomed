@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
-import TeamSection from "./TeamSection";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import Teams from "../ui/Teams";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -18,7 +18,7 @@ const translations = {
 export const prerender = true;
 ---
 
-<TeamSection
+<Teams
   teams={teamsData}
   translations={translations}
   lang={lang}

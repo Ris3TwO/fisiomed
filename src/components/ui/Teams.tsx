@@ -1,11 +1,11 @@
 import { useState } from "preact/hooks";
-import type { TeamSectionProps } from "../types/teams";
+import type { TeamsProps } from "../../types/teams";
 
-export default function TeamSection({
+const Teams = ({
   teams,
   translations,
   lang,
-}: TeamSectionProps) {
+}: Readonly<TeamsProps>) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const getNextMember = () => {
@@ -101,4 +101,6 @@ export default function TeamSection({
       </div>
     </section>
   );
-}
+};
+
+export default Teams;

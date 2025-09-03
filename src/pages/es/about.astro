@@ -1,12 +1,12 @@
 ---
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-import Layout from "../../layouts/Layout.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout title="Sobre Nosotros">
+<BaseLayout title="Sobre Nosotros">
   <section
     class="min-h-[100dvh] relative isolate overflow-hidden text-white py-24 -mt-[72px] md:-mt-[120px] lg:-mt-[90px] flex flex-col justify-center items-center text-center bg-black bg-opacity-50"
   >
@@ -16,4 +16,4 @@ const t = useTranslations(lang);
     </p>
     </p>
   </section>
-</Layout>
+</BaseLayout>

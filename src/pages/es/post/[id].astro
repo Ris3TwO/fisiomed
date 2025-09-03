@@ -1,6 +1,7 @@
 ---
-import Layout from "../../../layouts/Layout.astro";
-import { getPostById } from "../../../services/wp";
+
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getPostById } from "../../../services/wordpress/wp";
 import type { WpPost } from "../../../types/wp";
 
 const { id } = Astro.params;
@@ -10,7 +11,7 @@ if (!id) return Astro.redirect("/404");
 const post: WpPost = await getPostById(id);
 ---
 
-<Layout title={`${post.title}`}>
+<BaseLayout title={`${post.title}`}>
   <section class="bg-white dark:bg-gray-900">
     <div class="container px-6 py-10 mx-auto">
       <div class="lg:flex lg:-mx-6">
@@ -117,4 +118,4 @@ const post: WpPost = await getPostById(id);
       </div>
     </div>
   </section>
-</Layout>
+</BaseLayout>

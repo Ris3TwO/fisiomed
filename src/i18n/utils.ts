@@ -2,7 +2,7 @@ import { defaultLang } from "./languages";
 import en from "./translations/en.json";
 import es from "./translations/es.json";
 
-const translations = {
+export const translations = {
   en: en,
   es: es,
 } as const;

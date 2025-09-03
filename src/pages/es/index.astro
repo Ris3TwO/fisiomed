@@ -1,34 +1,20 @@
 ---
-import Hero from "../../components/Hero.astro";
-import LastPosts from "../../components/LastPosts.astro";
-import PostsCategories from "../../components/PostsCategories.astro";
-import SuggestedBooks from "../../components/SuggestedBooks.astro";
-import Team from "../../components/Team.astro";
-import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/sections/Hero.astro";
+import LastPosts from "../../components/sections/LastPosts.astro";
+import PostsCategories from "../../components/sections/PostsCategories.astro";
+import SuggestedBooks from "../../components/sections/SuggestedBooks.astro";
+import Team from "../../components/sections/Team.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
-<Layout title="¡Bienvenido a Fisio MED!">
+<BaseLayout title="¡Bienvenido a Fisio MED!">
   <Hero />
 
-  <LastPosts server:defer>
-    <div slot="fallback" class="py-20 lg:py-30 max-w-7xl mx-auto px-4 xl:px-0">
-      <div class="flex items-center justify-center h-64">
-        <div class="flex flex-col items-center space-y-4">
-          <div
-            class="animate-spin rounded-full h-12 w-12 border-b-2 border-honolulu-blue-600"
-          >
-          </div>
-          <p class="text-federal-blue-600 text-lg font-medium">
-            Cargando últimos posts...
-          </p>
-        </div>
-      </div>
-    </div>
-  </LastPosts>
+  <LastPosts />
 
   <SuggestedBooks />
 
   <PostsCategories server:defer />
 
   <Team />
-</Layout>
+</BaseLayout>
