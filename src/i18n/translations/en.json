@@ -1,4 +1,13 @@
 {
+  "common": {
+    "title": "Fisio MED",
+    "subtitle": "Your trusted resource for all things physiotherapy",
+    "description": "Fisio MED is a project by UNERS Maracay that aims to provide quality information and resources for physiotherapy students and professionals.",
+    "keywords": "Physiotherapy, Fisio MED, UNERS, Health, Rehabilitation, Therapy, Medical, Students, Professionals",
+    "language": "Language",
+    "selectLanguage": "Select your language",
+    "footerText": "© 2025 Fisio MED. All rights reserved."
+  },
   "nav": {
     "home": "Home",
     "about": "About",
@@ -19,11 +28,14 @@
     "allPosts": "View all articles",
     "category": "Category",
     "postTitle": "Article title",
-    "noPosts": "No articles available"
+    "noPosts": "No articles available",
+    "postReadtime": "min read"
   },
   "suggestedBooks": {
     "title": "Recommended books",
-    "subtitle": "Explore our selection of essential books for those starting out in the world of physiotherapy. Practical, theoretical and up-to-date resources that will accompany you in your academic and professional training."
+    "subtitle": "Explore our selection of essential books for those starting out in the world of physiotherapy. Practical, theoretical and up-to-date resources that will accompany you in your academic and professional training.",
+    "author": "Author / Authors",
+    "language": "Language"
   },
   "categories": {
     "title": "Our categories",

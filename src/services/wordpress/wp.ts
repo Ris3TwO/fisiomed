@@ -5,12 +5,12 @@ const API_URL = `${PUBLIC_BACKEND_URL}${PUBLIC_BACKEND_API_URL}`;
 
 export const getPosts = async (
   first = 100,
-  language: string | null = null,
+  languages: string[] = ["ES", "EN"],
   after: string | null = null
 ) => {
   const query = `
-    query GetPosts($first: Int!, $language: LanguageCodeFilterEnum, $after: String) {
-      posts(first: $first, where: { language: $language }, after: $after) {
+    query GetPosts($first: Int!, $languages: [LanguageCodeEnum!], $after: String) {
+      posts(first: $first, where: { languages: $languages }, after: $after) {
         edges {
           cursor
           node {
@@ -21,6 +21,7 @@ export const getPosts = async (
                 altText
               }
             }
+            slug
             date
             title
             content
@@ -28,6 +29,30 @@ export const getPosts = async (
               nodes {
                 name
                 slug
+              }
+            }
+            excerpt
+            author {
+              node {
+                name
+                avatar {
+                  url
+                }
+              }
+            }
+            additionalInformation {
+              redactor
+              showEditor
+              corrector {
+                edges {
+                  node {
+                    name
+                    lastName
+                    avatar {
+                      url
+                    }
+                  }
+                }
               }
             }
           }
@@ -42,14 +67,14 @@ export const getPosts = async (
 
   const variables: {
     first: number;
-    language?: string;
+    languages?: string[];
     after?: string;
   } = {
     first,
   };
 
-  if (language) {
-    variables.language = language;
+  if (languages && languages.length > 0) {
+    variables.languages = languages;
   }
 
   if (after) {
@@ -83,7 +108,6 @@ export const getPosts = async (
 
   return response.data.posts;
 };
-
 export const getPostById = async (id: string) => {
   const res = await fetch(API_URL, {
     method: "POST",
@@ -229,4 +253,77 @@ export const getCategories = async (
   }
 
   return response.data.categories;
+};
+
+export const getPostBySlug = async (slug: string) => {
+  const res = await fetch(API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+        query GetPostBySlug($slug: ID!) {
+          post(id: $slug, idType: SLUG) {
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+              }
+            }
+            date
+            title
+            content
+            categories {
+              nodes {
+                name
+                slug
+              }
+            }
+            language {
+              slug
+            }
+            additionalInformation {
+              showEditor
+              redactor
+              corrector {
+                edges {
+                  node {
+                    name
+                  }
+                }
+              }
+            }
+            author {
+              node {
+                name
+                avatar {
+                  url
+                }
+              }
+            }
+          }
+        }
+      `,
+      variables: {
+        slug,
+      },
+    }),
+  });
+
+  if (!res.ok) {
+    const errorText = await res.text();
+    console.error("Response error:", errorText);
+    throw new Error(`HTTP error! status: ${res.status}`);
+  }
+
+  const response = await res.json();
+
+  if (response.errors) {
+    console.error("GraphQL errors:", response.errors);
+    throw new Error("GraphQL query failed: " + response.errors[0].message);
+  }
+
+  return response.data.post;
 };

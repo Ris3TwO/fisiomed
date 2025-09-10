@@ -1,11 +1,40 @@
 ---
-import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-import Posts from "../ui/Posts";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import Posts from "@/components/ui/Posts";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section
   id="next-section"
   class="py-20 md:pb-0 md:pt-20 my-16 md:my-20 xl:my-30 max-w-7xl mx-auto"
 >
-  <Posts client:only />
+  <Posts client:only="preact">
+    <div
+      slot="postHeader"
+      class="grid md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 items-center mx-4 lg:mx-0"
+    >
+      <h2
+        class="text-4xl md:text-5xl xl:text-7xl uppercase text-federal-blue-600"
+      >
+        {t("posts.title")}
+      </h2>
+      <a
+        href={`/${lang}/blog/posts`}
+        class="px-1 lg:px-4 py-1 md:pr-1 lg:pr-2 border border-honolulu-blue-600 text-honolulu-blue-600 rounded-full md:rounded-4xl flex items-center col-start-3 w-fit place-self-end self-center"
+      >
+        <span
+          class="hidden md:block text-xs md:text-sm uppercase font-bold transition-colors duration-200"
+        >
+          {t("posts.allPosts")}
+        </span>
+        <div
+          class="rotate-45 md:ml-1 lg:ml-2 w-10 h-10 flex items-center justify-center rounded-full bg-honolulu-blue-600 text-light-cyan-600"
+        >
+          <i class="ti ti-arrow-up text-3xl lg:text-4xl"></i>
+        </div>
+      </a>
+    </div>
+  </Posts>
 </section>

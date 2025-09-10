@@ -1,4 +1,13 @@
 {
+  "common": {
+    "title": "Fisio MED",
+    "subtitle": "Tu recurso confiable para todo lo relacionado con la fisioterapia",
+    "description": "Fisio MED es un proyecto de la UNERS Maracay que busca ofrecer información y recursos de calidad para estudiantes y profesionales de la fisioterapia.",
+    "keywords": "Fisioterapia, Fisio MED, UNERS, Salud, Rehabilitación, Terapia, Médico, Estudiantes, Profesionales",
+    "language": "Idioma",
+    "selectLanguage": "Selecciona tu idioma",
+    "footerText": "© 2025 Fisio MED. Todos los derechos reservados."
+  },
   "nav": {
     "home": "Inicio",
     "about": "Sobre nosotros",
@@ -19,14 +28,17 @@
     "allPosts": "Ver todos los artículos",
     "category": "Categoria",
     "postTitle": "Título del artículo",
-    "noPosts": "No hay artículos disponibles"
+    "noPosts": "No hay artículos disponibles",
+    "postReadtime": "minuto(s) de lectura"
   },
   "about": {
     "message": "Sección aún en desarrollo. Aquí se mostrará información sobre el equipo, la misión y visión de FISIO MED UNERS, así como nuestras redes de ayuda."
   },
   "suggestedBooks": {
     "title": "Libros recomendados",
-    "subtitle": "Explora nuestra selección de libros esenciales para quienes inician en el mundo de la fisioterapia. Recursos prácticos, teóricos y actualizados que te acompañarán en tu formación académica y profesional."
+    "subtitle": "Explora nuestra selección de libros esenciales para quienes inician en el mundo de la fisioterapia. Recursos prácticos, teóricos y actualizados que te acompañarán en tu formación académica y profesional.",
+    "author": "Autor(a) / Autores",
+    "language": "Idioma"
   },
   "categories": {
     "title": "Nuestras categorías",

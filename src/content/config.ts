@@ -4,11 +4,18 @@ import { defineCollection, z } from "astro:content";
 
 const books = defineCollection({
   schema: z.object({
-    title: z.string(),
+    title: z.object({
+      es: z.string(),
+      en: z.string(),
+    }),
     author: z.string(),
     img: z.string(),
-    description: z.string().optional(),
+    description: z.object({
+      es: z.string(),
+      en: z.string(),
+    }),
     download: z.string().url(),
+    language: z.enum(["es", "en"]).default("es"),
   }),
 });
 

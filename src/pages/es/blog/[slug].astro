@@ -1,25 +1,37 @@
 ---
-import BaseLayout from "../../../layouts/BaseLayout.astro";
-import { getPostById } from "../../../services/wordpress/wp";
-import type { WpPost } from "../../../types/wp";
+import { Image } from "astro:assets";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getPosts } from "@/services/wordpress/wp";
+import type { WpPostEdge, WpPosts } from "@/types/wp";
 
-const { id } = Astro.params;
+export async function getStaticPaths() {
+  const allPosts: WpPosts = await getPosts(1000, ["ES", "EN"]);
 
-if (!id) return Astro.redirect("/404");
+  return allPosts.edges.map((post: WpPostEdge) => {
+    return {
+      params: { slug: post.node.slug },
+      props: { post: post.node },
+    };
+  });
+}
 
-const post: WpPost = await getPostById(id);
+const { post } = Astro.props;
+
+export const prerender = true;
 ---
 
-<BaseLayout title={`${post.title}`}>
+<BaseLayout title={`${post.title}`} isSubPage={true}>
   <section class="bg-white dark:bg-gray-900">
     <div class="container px-6 py-10 mx-auto">
       <div class="lg:flex lg:-mx-6">
         <div class="lg:w-3/4 lg:px-6">
-          <img
+          <Image
             class="object-cover object-center w-full h-80 xl:h-[28rem] rounded-xl"
             src={post.featuredImage.node.sourceUrl}
             alt={post.title}
-            loading="lazy"
+            width={1200}
+            height={675}
+            format="webp"
           />
 
           <div>
@@ -44,10 +56,14 @@ const post: WpPost = await getPostById(id);
 
             <!-- Post Author -->
             <div class="flex items-center mt-6">
-              <img
+              <Image
                 class="object-cover object-center w-10 h-10 rounded-full"
                 src={post.author.node.avatar.url}
                 alt={post.author.node.name}
+                width={40}
+                height={40}
+                fetchpriority={"low"}
+                format="webp"
               />
 
               <div class="mx-4">

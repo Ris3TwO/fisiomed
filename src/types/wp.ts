@@ -1,5 +1,16 @@
 export interface WpPosts {
-  node: WpPost
+  edges: {
+    node: WpPost;
+    cursor: string;
+  }[];
+  pageInfo: {
+    hasNextPage: boolean;
+    endCursor: string | null;
+  };
+}
+
+export interface WpPostEdge {
+  node: WpPost;
 }
 
 export interface WpPost {
@@ -8,9 +19,11 @@ export interface WpPost {
   date: string; // ISO 8601 format
   title: string;
   content: string; // HTML content
+  slug: string;
   categories: {
     nodes: Category[];
   };
+  excerpt: string; // HTML excerpt
   language: {
     slug: string;
   };

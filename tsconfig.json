@@ -9,6 +9,18 @@
   ],
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "preact"
+    "jsxImportSource": "preact",
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["./src/components/*"],
+      "@/services/*": ["./src/services/*"],
+      "@/types/*": ["./src/types/*"],
+      "@/lib": ["./src/lib/index.ts"],
+      "@/i18n/*": ["./src/i18n/*"],
+      "@/layouts/*": ["./src/layouts/*"],
+      "@/styles/*": ["./src/styles/*"],
+      "@/types": ["./src/types/index.ts"],
+      "@/services": ["./src/services/index.ts"]
+    }
   }
 }

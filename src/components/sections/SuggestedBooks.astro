@@ -35,7 +35,7 @@ export const prerender = true;
                 <img
                   class="object-contain object-top w-full h-64 rounded-lg lg:h-80"
                   src={`/assets/img/books/${book.data.img}`}
-                  alt={book.data.title}
+                  alt={book.data.title[lang]}
                 />
 
                 <div class="absolute bottom-0 flex py-2 bg-white dark:bg-gray-900 ">
@@ -44,20 +44,24 @@ export const prerender = true;
                       {book.data.author}
                     </h1>
                     <p class="text-sm text-gray-500 dark:text-gray-400">
-                      Autor(a) / Autores
+                      {t("suggestedBooks.author")}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <h1 class="mt-6 text-xl font-semibold text-gray-800">
-                {book.data.title}
-              </h1>
+              <h3 class="mt-6 text-xl font-semibold text-gray-800">
+                {book.data.title[lang]}
+              </h3>
 
-              <hr class="w-32 my-6 text-blue-500" />
+              <h4 class="mt-2 text-lg font-semibold text-gray-800">
+                {t("suggestedBooks.language")}: {book.data.language}
+              </h4>
+
+              <hr class="w-32 xl:w-48 my-6 text-blue-500" />
 
               <p class="text-sm text-gray-500 dark:text-gray-400">
-                {book.data.description}
+                {book.data.description[lang]}
               </p>
 
               <a
