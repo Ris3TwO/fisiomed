@@ -1,0 +1,10 @@
+---
+import { getLangFromUrl } from "@/i18n/utils";
+import { getCategories } from "@/services/wordpress/wp";
+import Categories from "@/components/ui/Categories";
+
+const lang = getLangFromUrl(Astro.url);
+const initialCategories = await getCategories(6, lang);
+---
+
+<Categories client:only="preact" initialCategories={initialCategories.nodes} />

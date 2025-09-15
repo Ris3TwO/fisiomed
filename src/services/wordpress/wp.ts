@@ -1,5 +1,5 @@
 import { PUBLIC_BACKEND_URL, PUBLIC_BACKEND_API_URL } from "astro:env/client";
-import type { GetCategoriesResponse } from "../../types/wp";
+import type { GetCategoriesResponse } from "@/types/wp";
 
 const API_URL = `${PUBLIC_BACKEND_URL}${PUBLIC_BACKEND_API_URL}`;
 
@@ -74,12 +74,10 @@ export const getPosts = async (
   };
 
   if (languages && languages.length > 0) {
-    variables.languages = languages;
+    variables.languages = languages.map((lang) => lang.toUpperCase());
   }
 
-  if (after) {
-    variables.after = after;
-  }
+  if (after) variables.after = after;
 
   const res = await fetch(API_URL, {
     method: "POST",
@@ -96,14 +94,16 @@ export const getPosts = async (
   if (!res.ok) {
     const errorText = await res.text();
     console.error("Response error:", errorText);
-    throw new Error(`HTTP error! status: ${res.status}`);
+    throw new Error(`HTTP error! status`, { cause: res.status });
   }
 
   const response = await res.json();
 
   if (response.errors) {
     console.error("GraphQL errors:", response.errors);
-    throw new Error("GraphQL query failed: " + response.errors[0].message);
+    throw new Error("GraphQL query failed: ", {
+      cause: response.errors[0].message,
+    });
   }
 
   return response.data.posts;
@@ -217,13 +217,9 @@ export const getCategories = async (
     first,
   };
 
-  if (language) {
-    variables.language = language;
-  }
+  if (language) variables.language = language.toUpperCase();
 
-  if (after) {
-    variables.after = after;
-  }
+  if (after) variables.after = after;
 
   const res = await fetch(API_URL, {
     method: "POST",

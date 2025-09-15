@@ -1,7 +1,7 @@
 ---
 import Hero from "@/components/sections/Hero.astro";
 import LastPosts from "@/components/sections/LastPosts.astro";
-import PostsCategories from "@/components/sections/PostsCategories.astro";
+import CategoriesSection from "@/components/sections/CategoriesSection.astro";
 import SuggestedBooks from "@/components/sections/SuggestedBooks.astro";
 import Team from "@/components/sections/Team.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
@@ -12,11 +12,11 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 <BaseLayout title="¡Bienvenido a Fisio MED!">
   <Hero />
 
-  <LastPosts server:defer />
+  <LastPosts />
 
   <SuggestedBooks />
 
-  <PostsCategories server:defer />
+  <CategoriesSection server:defer />
 
   <Team />
 </BaseLayout>

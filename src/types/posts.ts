@@ -1,5 +1,6 @@
 import type React from "preact/compat";
+import { translations } from "@/i18n/utils";
 
 export interface PostsProps {
-  postHeader?: React.ReactNode;
+  lang: keyof typeof translations;
 }
