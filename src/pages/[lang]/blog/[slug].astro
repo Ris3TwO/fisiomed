@@ -3,13 +3,16 @@ import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getPosts } from "@/services/wordpress/wp";
 import type { WpPostEdge, WpPosts } from "@/types/wp";
+import { LOCALES } from "@/i18n/config";
 
 export async function getStaticPaths() {
-  const allPosts: WpPosts = await getPosts(1000, ["ES", "EN"]);
+  const allPosts: WpPosts = await getPosts(1000, LOCALES);
 
   return allPosts.edges.map((post: WpPostEdge) => {
+    const lang = post.node.language.slug;
+
     return {
-      params: { slug: post.node.slug },
+      params: { lang: lang, slug: post.node.slug },
       props: { post: post.node },
     };
   });

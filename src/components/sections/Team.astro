@@ -1,16 +1,17 @@
 ---
+import Teams from "@/components/ui/Teams";
 import { getCollection } from "astro:content";
-import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-import Teams from "../ui/Teams";
+import { useTranslations } from "@/i18n/utils";
+import { DEFAULT_LOCALE, type Locale } from "@/i18n/config";
 
-const lang = getLangFromUrl(Astro.url);
+const lang: Locale = Astro.currentLocale || DEFAULT_LOCALE;
 const t = useTranslations(lang);
 
 const teams = await getCollection("teams");
 
 const teamsData = teams.map((team) => team.data);
 
-const translations = {
+const contentTitles = {
   title: t("team.title"),
   subtitle: t("team.subtitle"),
 };
@@ -18,9 +19,4 @@ const translations = {
 export const prerender = true;
 ---
 
-<Teams
-  teams={teamsData}
-  translations={translations}
-  lang={lang}
-  client:load
-/>
+<Teams teams={teamsData} translations={contentTitles} lang={lang} client:load />

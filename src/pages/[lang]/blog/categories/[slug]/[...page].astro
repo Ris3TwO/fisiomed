@@ -1,0 +1,27 @@
+---
+import CategoryPage from "@/components/pages/CategoryPage.astro";
+import { generateCategoryPaths } from "src/lib";
+import { DEFAULT_LOCALE, LOCALES, type Locale } from "src/i18n/config";
+import { useTranslations } from "@/i18n/utils";
+
+export async function getStaticPaths() {
+  const allPages = [];
+
+  for (const lang of LOCALES) {
+    const pagesForLang = await generateCategoryPaths(lang);
+    allPages.push(...pagesForLang);
+  }
+
+  return allPages;
+}
+
+const props = Astro.props;
+const slug = Astro.params.slug;
+
+const lang: Locale = Astro.currentLocale || DEFAULT_LOCALE;
+const t = useTranslations(lang);
+
+export const prerender = true;
+---
+
+<CategoryPage {...props} slug={slug} lang={lang} t={t} />

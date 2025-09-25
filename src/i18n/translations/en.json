@@ -1,16 +1,21 @@
 {
-  "common": {
-    "title": "Fisio MED",
+  "homepage": {
+    "title": "Welcome to Fisio MED",
     "subtitle": "Your trusted resource for all things physiotherapy",
     "description": "Fisio MED is a project by UNERS Maracay that aims to provide quality information and resources for physiotherapy students and professionals.",
-    "keywords": "Physiotherapy, Fisio MED, UNERS, Health, Rehabilitation, Therapy, Medical, Students, Professionals",
+    "metaTitle": "Fisio MED - Your trusted resource for all things physiotherapy",
+    "metaDescription": "Fisio MED is a project by UNERS Maracay that aims to provide quality information and resources for physiotherapy students and professionals.",
+    "metaKeywords": "Physiotherapy, Fisio MED, UNERS, Health, Rehabilitation, Therapy, Medical, Students, Professionals",
+    "keywords": "Physiotherapy, Fisio MED, UNERS, Health, Rehabilitation, Therapy, Medical, Students, Professionals"
+  },
+  "common": {
     "language": "Language",
     "selectLanguage": "Select your language",
     "footerText": "© 2025 Fisio MED. All rights reserved."
   },
   "nav": {
     "home": "Home",
-    "about": "About",
+    "about": "About Us",
     "login": "Log In"
   },
   "hero": {

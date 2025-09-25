@@ -11,10 +11,11 @@ export interface WpPosts {
 
 export interface WpPostEdge {
   node: WpPost;
+  cursor: string;
 }
 
 export interface WpPost {
-  postId: string;
+  postId: number;
   featuredImage: FeaturedImage;
   date: string; // ISO 8601 format
   title: string;
@@ -26,6 +27,7 @@ export interface WpPost {
   excerpt: string; // HTML excerpt
   language: {
     slug: string;
+    code: string;
   };
   author: {
     node: Author;

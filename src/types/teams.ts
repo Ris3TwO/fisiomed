@@ -1,14 +1,10 @@
+import type { Locale } from "@/i18n/config";
+
 export interface TeamMember {
   name: string;
-  position: {
-    es: string;
-    en: string;
-  };
+  position: { [key in Locale]: string };
   img: string;
-  bio: {
-    es: string;
-    en: string;
-  };
+  bio: { [key in Locale]: string };
 }
 
 export interface TeamsProps {
@@ -17,5 +13,5 @@ export interface TeamsProps {
     title: string;
     subtitle: string;
   };
-  lang: "es" | "en";
+  lang: Locale;
 }

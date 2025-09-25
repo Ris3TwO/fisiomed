@@ -5,6 +5,8 @@ import tailwindcss from "@tailwindcss/vite";
 import vercel from "@astrojs/vercel";
 import preact from "@astrojs/preact";
 
+import { i18n } from "./src/i18n/config.ts";
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -12,13 +14,7 @@ export default defineConfig({
   },
   output: "server",
   adapter: vercel({}),
-  i18n: {
-    locales: ["es", "en"],
-    defaultLocale: "es",
-    routing: {
-      prefixDefaultLocale: true,
-    },
-  },
+  i18n: i18n,
   env: {
     schema: {
       PUBLIC_BACKEND_URL: envField.string({

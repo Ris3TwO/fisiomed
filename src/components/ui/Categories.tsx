@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "preact/hooks";
-import { getLangFromUrl, translations, useTranslations } from "@/i18n/utils";
+import { useTranslations } from "@/i18n/utils";
 import { getCategories } from "@/services/wordpress/wp";
 import { useTransition } from "preact/compat";
 import type { WpCategory } from "@/types/wp";
@@ -12,18 +12,19 @@ import type { SwiperOptions } from "swiper/types";
 // Styles for Swiper components
 import "swiper/css";
 import SliderButton from "./SliderButton";
+import type { Locale } from "@/i18n/config";
 
 const Categories = ({
   initialCategories,
+  lang,
 }: {
   initialCategories: WpCategory[];
+  lang: Locale;
 }) => {
   const [isFetching, setIsFetching] = useState(true);
   const [_, startTransition] = useTransition();
   const [categories, setCategories] = useState(initialCategories);
-  const [t, setT] = useState(() =>
-    useTranslations(getLangFromUrl(new URL(window.location.href)))
-  );
+  const [t, setT] = useState(() => useTranslations(lang));
   const swiperElRef = useRef(null);
   const prevElRef = useRef(null);
   const nextElRef = useRef(null);
@@ -58,7 +59,7 @@ const Categories = ({
     },
   };
 
-  const getAllCategories = async (currentLang: keyof typeof translations) => {
+  const getAllCategories = async (currentLang: Locale) => {
     setIsFetching(true);
     try {
       const categoriesData = await getCategories(6, currentLang);
@@ -74,12 +75,10 @@ const Categories = ({
   };
 
   useEffect(() => {
-    const currentLang = getLangFromUrl(new URL(window.location.href));
-    getAllCategories(currentLang);
+    getAllCategories(lang);
 
     const handleUrlChange = () => {
-      const newLang = getLangFromUrl(new URL(window.location.href));
-      getAllCategories(newLang);
+      getAllCategories(lang);
     };
 
     window.addEventListener("popstate", handleUrlChange);
@@ -106,7 +105,7 @@ const Categories = ({
   }, [categories]);
 
   return (
-    <section class="py-20 lg:py-30 max-w-7xl mx-auto px-4 xl:px-0">
+    <section class="py-20 lg:py-30 max-w-7xl mx-auto px-4 2xl:px-0">
       <div class="grid grid-cols-[20%_1fr] md:flex items-center md:justify-between relative">
         <h2 class="text-4xl md:text-5xl xl:text-7xl uppercase text-federal-blue-600">
           {t("categories.title")}

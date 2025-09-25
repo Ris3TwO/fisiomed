@@ -1,11 +1,13 @@
 ---
 import { getCollection } from "astro:content";
-import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { useTranslations } from "@/i18n/utils";
+import { DEFAULT_LOCALE, type Locale } from "@/i18n/config";
+import type { BookData } from "@/types";
 
-const lang = getLangFromUrl(Astro.url);
+const lang: Locale = Astro.currentLocale || DEFAULT_LOCALE;
 const t = useTranslations(lang);
 
-const books = await getCollection("books");
+const books = (await getCollection("books")) as { data: BookData }[];
 
 export const prerender = true;
 ---

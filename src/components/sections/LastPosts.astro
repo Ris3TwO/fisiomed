@@ -1,9 +1,9 @@
 ---
-import { getLangFromUrl, useTranslations } from "@/i18n/utils";
-import Posts from "@/components/ui/Posts";
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+import Posts from "@/components/ui/Posts";
+import { DEFAULT_LOCALE, type Locale } from "@/i18n/config";
+
+const lang: Locale = Astro.currentLocale || DEFAULT_LOCALE;
 ---
 
 <section

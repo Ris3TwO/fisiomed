@@ -1,4 +1,13 @@
 {
+  "homepage": {
+    "title": "Bienvenido a Fisio MED",
+    "subtitle": "Tu recurso confiable para todo lo relacionado con la fisioterapia",
+    "description": "Fisio MED es un proyecto de la UNERS Maracay que busca ofrecer información y recursos de calidad para estudiantes y profesionales de la fisioterapia.",
+    "metaTitle": "Fisio MED - Tu recurso confiable para todo lo relacionado con la fisioterapia",
+    "metaDescription": "Fisio MED es un proyecto de la UNERS Maracay que busca ofrecer información y recursos de calidad para estudiantes y profesionales de la fisioterapia.",
+    "metaKeywords": "Fisioterapia, Fisio MED, UNERS, Salud, Rehabilitación, Terapia, Médico, Estudiantes, Profesionales",
+    "keywords": "Fisioterapia, Fisio MED, UNERS, Salud, Rehabilitación, Terapia, Médico, Estudiantes, Profesionales"
+  },
   "common": {
     "title": "Fisio MED",
     "subtitle": "Tu recurso confiable para todo lo relacionado con la fisioterapia",
@@ -10,7 +19,7 @@
   },
   "nav": {
     "home": "Inicio",
-    "about": "Sobre nosotros",
+    "about": "Sobre Nosotros",
     "login": "Ingresar"
   },
   "hero": {

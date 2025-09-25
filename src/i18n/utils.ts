@@ -1,4 +1,4 @@
-import { defaultLang } from "./languages";
+import { DEFAULT_LOCALE, type Locale } from './config';
 import en from "./translations/en.json";
 import es from "./translations/es.json";
 
@@ -7,22 +7,16 @@ export const translations = {
   es: es,
 } as const;
 
-export function getLangFromUrl(url: URL) {
-  const [, lang] = url.pathname.split("/");
-  if (lang in translations) return lang as keyof typeof translations;
-  return defaultLang;
-}
-
-export function useTranslations(lang: keyof typeof translations) {
+export function useTranslations(lang: Locale) {
   return function t<T extends string>(key: T): string {
     const keys = key.split(".");
-    let value: any = translations[lang];
+    let value: any = translations[lang as keyof typeof translations];
 
     // Recorrer el objeto anidado
     for (const k of keys) {
       value = value?.[k];
       if (value === undefined) {
-        value = translations[defaultLang];
+        value = translations[DEFAULT_LOCALE];
         for (const k of keys) {
           value = value?.[k];
           if (value === undefined) return key;
@@ -35,9 +29,8 @@ export function useTranslations(lang: keyof typeof translations) {
   };
 }
 
-// Tipo para TypeScript (opcional pero recomendado)
 export type TranslationKey = {
-  [K in keyof (typeof translations)[typeof defaultLang]]: (typeof translations)[typeof defaultLang][K] extends object
-    ? `${K}.${keyof (typeof translations)[typeof defaultLang][K] & string}`
+  [K in keyof (typeof translations)[typeof DEFAULT_LOCALE]]: (typeof translations)[typeof DEFAULT_LOCALE][K] extends object
+    ? `${K}.${keyof (typeof translations)[typeof DEFAULT_LOCALE][K] & string}`
     : K;
-}[keyof (typeof translations)[typeof defaultLang]];
+}[keyof (typeof translations)[typeof DEFAULT_LOCALE]];

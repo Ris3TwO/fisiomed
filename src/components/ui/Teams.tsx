@@ -1,5 +1,5 @@
 import { useState } from "preact/hooks";
-import type { TeamsProps } from "../../types/teams";
+import type { TeamsProps } from "@/types";
 
 const Teams = ({
   teams,

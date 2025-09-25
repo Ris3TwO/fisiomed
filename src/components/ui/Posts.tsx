@@ -1,21 +1,20 @@
 import { useEffect, useMemo, useState } from "preact/hooks";
 import { getPosts } from "@/services/wordpress/wp";
 import type { PostsProps, WpPostEdge } from "@/types";
-import { getLangFromUrl, translations, useTranslations } from "@/i18n/utils";
+import { useTranslations } from "@/i18n/utils";
 import type React from "preact/compat";
 import { useTransition } from "preact/compat";
 import PostCard from "./PostCard";
 import PostCardSkeleton from "./PostCardSkeleton";
+import type { Locale } from "@/i18n/config";
 
 const Posts: React.FC<PostsProps> = ({ lang }) => {
   const [isFetching, setIsFetching] = useState(true);
   const [_, startTransition] = useTransition();
   const [posts, setPosts] = useState<WpPostEdge[]>([]);
-  const [t, setT] = useState(() =>
-    useTranslations(getLangFromUrl(new URL(window.location.href)))
-  );
+  const [t, setT] = useState(() => useTranslations(lang));
 
-  const getAllPosts = async (lang: keyof typeof translations) => {
+  const getAllPosts = async (lang: Locale) => {
     setIsFetching(true);
     try {
       const postsData = await getPosts(6, [lang]);
@@ -40,12 +39,10 @@ const Posts: React.FC<PostsProps> = ({ lang }) => {
   );
 
   useEffect(() => {
-    const currentLang = getLangFromUrl(new URL(window.location.href));
-    getAllPosts(currentLang);
+    getAllPosts(lang);
 
     const handleUrlChange = () => {
-      const newLang = getLangFromUrl(new URL(window.location.href));
-      getAllPosts(newLang);
+      getAllPosts(lang);
     };
 
     window.addEventListener("popstate", handleUrlChange);
@@ -55,7 +52,7 @@ const Posts: React.FC<PostsProps> = ({ lang }) => {
   }, []);
 
   return (
-    <div class="container mx-auto px-6 py-10 lg:px-0 lg:py-0">
+    <div class="container mx-auto px-6 py-10 2xl:px-0 2xl:py-0">
       {/* Post Header */}
       <div
         slot="postHeader"
@@ -65,7 +62,7 @@ const Posts: React.FC<PostsProps> = ({ lang }) => {
           {t("posts.title")}
         </h2>
         <a
-          href={`/${lang}/blog/posts`}
+          href={`/${lang}/blog`}
           class="px-1 lg:px-4 py-1 md:pr-1 lg:pr-2 border border-honolulu-blue-600 text-honolulu-blue-600 rounded-full md:rounded-4xl flex items-center col-start-3 w-fit place-self-end self-center"
         >
           <span class="hidden md:block text-xs md:text-sm uppercase font-bold transition-colors duration-200">
