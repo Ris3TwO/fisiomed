@@ -8,7 +8,7 @@ const initialCategories = await getCategories(6, lang);
 ---
 
 <Categories
-  client:only="preact"
+  client:visible
   initialCategories={initialCategories.nodes}
   lang={lang}
 />

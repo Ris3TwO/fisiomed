@@ -1,0 +1,45 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { WpPost } from "@/types/wp";
+
+const { posts, lang } = Astro.props;
+---
+
+<BaseLayout title="Blog" isSubPage={true}>
+  <div class="container px-6 py-10 mx-auto">
+    <h1 class="text-3xl font-semibold text-gray-800 dark:text-white">
+      Artículos Recientes {lang}
+    </h1>
+
+    <div class="mt-8 space-y-8">
+      {
+        posts.length > 0 ? (
+          posts.map((post: WpPost) => (
+            <article class="p-6 border border-gray-200 rounded-lg dark:border-gray-700">
+              <h2 class="text-2xl font-semibold text-gray-800 dark:text-white">
+                <a href={`/es/blog/${post.slug}`}>{post.title}</a>
+              </h2>
+              {/* Usamos una expresión regular para limpiar el excerpt */}
+              <p
+                class="mt-4 text-gray-600 dark:text-gray-300"
+                set:html={post.excerpt}
+              />
+              <a
+                href={`/es/blog/${post.slug}`}
+                class="inline-block mt-4 text-blue-500 hover:underline"
+              >
+                Leer más
+              </a>
+            </article>
+          ))
+        ) : (
+          <div class="text-center py-10">
+            <p class="text-lg text-gray-600 dark:text-gray-300">
+              No hay artículos disponibles en este momento.
+            </p>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</BaseLayout>

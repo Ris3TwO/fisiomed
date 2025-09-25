@@ -46,11 +46,11 @@ const Categories = ({
     breakpoints: {
       768: {
         slidesPerView: 2,
-        spaceBetween: 30,
+        spaceBetween: 15,
       },
       1024: {
         slidesPerView: 3,
-        spaceBetween: 40,
+        spaceBetween: 20,
       },
       1280: {
         slidesPerView: 4,
@@ -131,7 +131,7 @@ const Categories = ({
 
       <div class="mt-8 md:mt-20">
         {isFetching && (
-          <div class="flex flex-col md:grid md:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 lg:gap-x-6 gap-y-8 mx-4 lg:mx-0">
+          <div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 lg:gap-x-6 gap-y-8 mx-4 lg:mx-0">
             {Array.from({ length: 4 }).map(() => (
               <article class="relative hover:cursor-wait hover:shadow-lg hover:scale-105 transition-all duration-300 text-light-cyan-600 hover:text-honolulu-blue-600 animate-pulse">
                 <div class="aspect-[4/5] object-cover w-full h-auto rounded-lg bg-gray-300"></div>

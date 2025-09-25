@@ -10,5 +10,5 @@ const lang: Locale = Astro.currentLocale || DEFAULT_LOCALE;
   id="next-section"
   class="py-20 md:pb-0 md:pt-20 my-16 md:my-20 xl:my-30 max-w-7xl mx-auto"
 >
-  <Posts client:only="preact" lang={lang} />
+  <Posts client:visible lang={lang} />
 </section>
