@@ -1,0 +1,48 @@
+---
+import { LOCALES } from "@/i18n/config";
+import { formatDate } from "@/lib";
+import { getPosts } from "@/services/wordpress/wp";
+import type { WpPosts } from "@/types/wp";
+import { Image } from "astro:assets";
+
+const { lang } = Astro.props;
+
+const posts: WpPosts = await getPosts(3, [lang]);
+---
+
+<div
+  class="max-w-[370px] w-full rounded-[10px] border border-gray-3 p-4 sm:p-7.5 lg:p-10"
+>
+  <h4 class="font-semibold text-custom-4 text-dark mb-7.5">Últimos posts</h4>
+
+  <div class="flex flex-col gap-7.5">
+    <!-- post item -->
+    {
+      posts.edges.length > 0 &&
+        posts.edges.map((post) => {
+          <a href={`/${lang}/blog/${post.node.slug}`} class="group flex gap-6.5">
+            <div class="max-w-[70px] w-full h-17.5 rounded-full">
+              <Image
+                src={post.node.featuredImage.node.sourceUrl}
+                alt={post.node.title}
+                width={200}
+                height={200}
+                format="webp"
+              />
+            </div>
+
+            <div>
+              <h5 class="font-medium text-sm text-dark duration-200 ease-in mb-1.5 group-hover:text-primary">
+                {post.node.title}
+              </h5>
+              <div class="flex items-center gap-2">
+                <p class="text-custom-xs">{post.node.author.node.name}</p>
+                <span class="flex w-[3px] h-[3px] rounded-full bg-dark-2" />
+                <p class="text-custom-xs">{formatDate(post.node.date)}</p>
+              </div>
+            </div>
+          </a>;
+        })
+    }
+  </div>
+</div>

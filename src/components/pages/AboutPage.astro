@@ -5,17 +5,128 @@ const { t } = Astro.props;
 ---
 
 <BaseLayout title={t("about.title")} isSubPage={true}>
-  <section
-    class="min-h-[100dvh] relative isolate overflow-hidden text-white py-24 -mt-[72px] md:-mt-[120px] lg:-mt-[90px] flex flex-col justify-center items-center text-center bg-black bg-opacity-50"
-  >
-    <p
-      class="max-w-lg xl:max-w-7xl mx-auto px-4 lg:px-0 text-lg md:text-xl lg:text-2xl"
+  <section class="overflow-hidden bg-white">
+    <h1
+      class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-center text-purpureus-600 pt-20"
     >
-      <p
-        class="max-w-lg xl:max-w-7xl mx-auto px-4 lg:px-0 text-lg md:text-xl lg:text-2xl"
+      {t("about.title")}
+    </h1>
+    <div class="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 pt-20 pb-17.5">
+      <div
+        class="flex flex-col lg:flex-row items-center gap-7.5 xl:gap-14 mb-20"
       >
-        {t("about.message")}
-      </p>
-    </p>
+        <div class="lg:max-w-[570px] w-full">
+          <img
+            src="/assets/img/mision.webp"
+            alt="nuestra misión"
+            class="w-full rounded-xl"
+          />
+        </div>
+
+        <div class="lg:max-w-[490px] w-full">
+          <span
+            class="inline-flex text-purpureus-600 font-medium text-md lg:text-xl mb-2.5"
+            >Nuestra Misión</span
+          >
+          <h2
+            class="text-xl sm:text-3xl lg:text-5xl text-light-cyan-100 mb-5"
+          >
+            Impulsando tu Potencial Académico y Profesional
+          </h2>
+          <p>
+            En la Revista UNERS trabajamos para ser el aliado académico que todo
+            estudiante universitario de Fisioterapia necesita en su formación.
+            Nuestra misión es facilitar, fortalecer y enriquecer sus
+            investigaciones mediante información confiable, actualizada y fácil
+            de comprender, integrando herramientas tecnológicas, bases de
+            conocimiento y contenidos detallados sobre anatomía.
+          </p>
+          <p class="mt-4.5">
+            Buscamos despertar la curiosidad, estimular el pensamiento crítico y
+            promover el aprendizaje continuo, ofreciendo recursos que respalden
+            tanto el estudio individual como el trabajo en equipo. Aspiramos a
+            que nuestros contenidos no solo sirvan para cumplir con tareas o
+            proyectos, sino que también se conviertan en un apoyo real para el
+            crecimiento académico y profesional futuro de cada estudiante.
+          </p>
+          <p class="mt-4.5">
+            Y porque creemos que aprender no está reñido con disfrutar, añadimos
+            un toque fresco en nuestra sección de farándula, donde mezclamos
+            información, cultura y entretenimiento, logrando que la experiencia
+            de leer nuestra revista sea tan enriquecedora como amena.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="flex flex-col lg:flex-row items-center gap-7.5 xl:gap-14 mb-20"
+      >
+        <div class="lg:max-w-[490px] w-full">
+          <span
+            class="inline-flex text-purpureus-600 font-medium text-md lg:text-xl mb-2.5"
+            >Nuestra Visión</span
+          >
+          <h2
+            class="text-xl sm:text-3xl lg:text-5xl text-light-cyan-100 mb-5"
+          >
+            Fundamentos de la Revista UNERS: Un Compromiso con la Excelencia
+            Académica
+          </h2>
+          <p>
+            La Revista UNERS aspira a consolidarse como un espacio académico y
+            formativo de referencia en el área de la fisioterapia, orientado a
+            fortalecer el aprendizaje de los estudiantes y enriquecer sus
+            métodos de estudio. Nuestra visión es acompañar y guiar a quienes se
+            forman en esta carrera, brindándoles herramientas claras, recursos
+            prácticos y recomendaciones de calidad que los ayuden a avanzar con
+            seguridad en su proceso educativo, evitando la desorientación que
+            muchas generaciones anteriores experimentaron.
+          </p>
+          <p class="mt-4.5">
+            Queremos ser un puente entre la medicina del pasado y la medicina
+            actualizada, vinculando los avances científicos con los estudios
+            fisioterapéuticos más innovadores, promoviendo la actualización
+            constante, la innovación en la enseñanza y la creación de una
+            comunidad estudiantil unida y comprometida con la excelencia
+            profesional.
+          </p>
+          <p class="mt-4.5">
+            Todo esto está hecho con la finalidad de ayudar a las próximas
+            generaciones, ofreciendo fuentes confiables de información,
+            aplicaciones que fortalezcan sus métodos de estudio, libros de
+            referencia validados y múltiples recursos adicionales, incluyendo
+            proyectos de impacto social que enriquezcan su formación y visión
+            profesional.
+          </p>
+        </div>
+
+        <div class="lg:max-w-[570px] w-full">
+          <img
+            src="/assets/img/vision.webp"
+            alt="nuestra visión"
+            class="w-full rounded-xl"
+          />
+        </div>
+      </div>
+
+      <div class="max-w-[770px] mx-auto mt-16">
+        <div class="border-l-[3px] border-gray-3 py-5 px-8 mt-7.5">
+          <p class="italic font-medium text-dark">
+            “Todo gran fuego comienza con una pequeña chispa. La de FisioMed la
+            encendió Yeleivis, quien llegó con la idea de crear algo nuevo, un
+            espacio que sentía que faltaba para complementar nuestro proyecto.
+            Juntas empezamos a desarrollar esa idea inicial, ampliarla,
+            debatirla y soñarla en grande. Lo que comenzó como un concepto en
+            una conversación, se transformó en borradores, en una versión beta
+            que probamos con ilusión y con ganas de mejorar. Hoy para nosotras
+            FisioMed es mas que un proyecto es nuestra creacion que con tanto
+            empeño queremos verlo crecer. Estamos aqui porque creimos en el "¿y
+            si lo intentamos amiga?" asi que queridos lectores esperamos que
+            disfruten leer y aprender tanto como nosotras disfrutamos creandola.
+            ” — María Ron & Yeleivis Gonzalez.
+          </p>
+        </div>
+      </div>
+    </div>
   </section>
 </BaseLayout>
