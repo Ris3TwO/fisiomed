@@ -280,6 +280,35 @@ export const getPostsByCategorySlug = async (
               sourceUrl(size: LARGE)
             }
           }
+          categories {
+            nodes {
+              name
+              slug
+            }
+          }
+          author {
+            node {
+              name
+              avatar {
+                url
+              }
+            }
+          }
+          additionalInformation {
+            redactor
+            showEditor
+            corrector {
+              edges {
+                node {
+                  name
+                  lastName
+                  avatar {
+                    url
+                  }
+                }
+              }
+            }
+          }
         }
         pageInfo {
           hasNextPage

@@ -28,9 +28,8 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 const { page } = Astro.props;
 
 const { lang } = Astro.params;
-const posts = page.data;
 
-const props = { lang, posts };
+const props = { lang, page };
 
 export const prerender = true;
 ---

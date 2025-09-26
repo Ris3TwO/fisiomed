@@ -58,7 +58,7 @@ const Posts: React.FC<PostsProps> = ({ lang }) => {
         slot="postHeader"
         class="grid md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 items-center mx-4 lg:mx-0"
       >
-        <h2 class="text-4xl md:text-5xl xl:text-7xl uppercase text-federal-blue-600">
+        <h2 class="text-4xl md:text-5xl xl:text-7xl uppercase text-purpureus-600">
           {t("posts.title")}
         </h2>
         <a

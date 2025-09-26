@@ -33,7 +33,7 @@
     "allPosts": "View all articles",
     "category": "Category",
     "postTitle": "Article title",
-    "noPosts": "No articles available",
+    "noPosts": "There are no articles available at this time",
     "postReadtime": "min read"
   },
   "suggestedBooks": {
@@ -44,9 +44,14 @@
   },
   "categories": {
     "title": "Our categories",
-    "noCategories": "No categories available"
+    "noCategories": "No categories available",
+    "page": {
+      "title": "Articles about: ",
+      "subtitle": "Explore all our articles dedicated to this topic. Here you will find guides, tips, and resources to learn more about "
+    }
   },
   "about": {
+    "title": "About Us",
     "message": "Section still under development. Here you will find information about the team, the mission and vision of FISIO MED UNERS, as well as our support networks."
   },
   "team": {
@@ -55,5 +60,13 @@
   },
   "alert": {
     "message": "We are working on it! Some parts of the site are still under development."
+  },
+  "blog": {
+    "title": "Our Knowledge Hub",
+    "subtitle": "Explore our complete collection of articles on physiotherapy, recovery, and proactive wellness."
+  },
+  "pagination": {
+    "next": "Next",
+    "previous": "Previous"
   }
 }

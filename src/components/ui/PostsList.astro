@@ -1,0 +1,103 @@
+---
+import {
+  categoryColorMap as rawCategoryColorMap,
+  formatDate,
+  getPostExcerpt,
+} from "@/lib";
+import type { AdditionalInformation, WpPost } from "@/types/wp";
+import { Image } from "astro:assets";
+
+const { posts, t, lang } = Astro.props;
+
+const categoryColorMap: Record<string, { text: string; bg: string }> =
+  rawCategoryColorMap;
+
+const getAuthor = (data: WpPost) => {
+  const {
+    additionalInformation: info,
+  }: { additionalInformation: AdditionalInformation } = data;
+
+  if (info.showEditor) {
+    return info.redactor;
+  }
+
+  return data.author.node.name;
+};
+
+const getCategoryColor = (post: WpPost) => {
+  const category = post.categories?.nodes[0];
+  const categorySlug = category?.slug || "default";
+
+  const color = categoryColorMap[categorySlug] || categoryColorMap.default;
+
+  const baseClasses =
+    "inline-flex font-medium text-sm py-1 px-3 rounded-full mb-2.5 transition-all";
+
+  return `${baseClasses} ${color.text} ${color.bg}`;
+};
+---
+
+<div
+  class="grid grid-col-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-y-11 gap-x-7.5 my-12"
+>
+  {
+    posts.length > 0 ? (
+      posts.map((post: WpPost) => (
+        <article class="group ">
+          <div class="border-1 rounded-2xl p-4 transition-all group-hover:scale-105">
+            <div class="mb-6 overflow-hidden rounded-[8px] ">
+              <Image
+                class="w-full h-54 xl:h-68"
+                src={post.featuredImage.node.sourceUrl}
+                alt={post.featuredImage.node.altText || post.title}
+                width={600}
+                height={600}
+                format="webp"
+              />
+            </div>
+
+            <a href={`/${lang}/blog/categories/${post.categories?.nodes[0].slug}`}>
+              <span class={getCategoryColor(post)}>
+                {post.categories?.nodes[0].name}
+              </span>
+            </a>
+
+            <h4>
+              <a
+                href={`/${lang}/blog/${post.slug}`}
+                class="block text-dark font-bold text-xl mb-3.5"
+              >
+                <span class="bg-linear-to-r from-purpureus-600/50 to-purpureus-600/40 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px]">
+                  {post.title}
+                </span>
+              </a>
+            </h4>
+
+            <div set:html={getPostExcerpt(post.excerpt)} />
+
+            <div class="flex flex-wrap gap-3 items-center justify-between mt-4.5">
+              <div class="flex items-center gap-2.5">
+                <div class="flex items-center gap-3">
+                  <div class="flex w-6 h-6 rounded-full overflow-hidden">
+                    <img src={post.author?.node.avatar.url} alt="user" />
+                  </div>
+                  <p class="text-sm">{getAuthor(post)}</p>
+                </div>
+
+                <span class="flex w-[3px] h-[3px] rounded-full bg-black" />
+
+                <p class="text-sm">{formatDate(post.date)}</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))
+    ) : (
+      <div class="col-span-1 sm:col-span-2 lg:col-span-3 2xl:col-span-4 text-center">
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          {t("posts.noPosts")}
+        </p>
+      </div>
+    )
+  }
+</div>

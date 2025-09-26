@@ -21,7 +21,7 @@ const Teams = ({
   return (
     <section className="bg-white dark:bg-non-photo-blue-600 dark:text-black py-20 md:py-20 xl:py-30 px-4 xl:px-12">
       <div className="max-w-7xl mx-auto">
-        <h2 className="uppercase text-4xl md:text-5xl xl:text-7xl font-bold text-federal-blue-600">
+        <h2 className="uppercase text-4xl md:text-5xl xl:text-7xl font-bold text-purpureus-600">
           {translations.title}
         </h2>
 
@@ -30,9 +30,9 @@ const Teams = ({
         </p>
 
         <main className="relative z-20 w-full mt-8 md:flex md:items-center xl:mt-12">
-          <div className="absolute w-full bg-federal-blue-700 -z-10 md:h-96 rounded-2xl"></div>
+          <div className="absolute w-full bg-purpureus-700 -z-10 md:h-96 rounded-2xl"></div>
 
-          <div className="w-full p-6 bg-federal-blue-700 md:flex md:items-center rounded-2xl md:bg-transparent md:p-0 lg:px-12 md:justify-evenly">
+          <div className="w-full p-6 bg-purpureus-700 md:flex md:items-center rounded-2xl md:bg-transparent md:p-0 lg:px-12 md:justify-evenly">
             <img
               className="h-24 w-24 md:mx-6 rounded-full object-cover shadow-md md:h-[32rem] md:w-70 lg:h-[36rem] lg:w-[20rem] md:rounded-2xl transition-all duration-300"
               src={`/assets/img/teams/${currentMember.img}`}

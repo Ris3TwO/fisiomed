@@ -53,7 +53,17 @@ export interface Author {
 export interface AdditionalInformation {
   redactor: string | null;
   showEditor: boolean;
-  corrector: string | null;
+  corrector: {
+    edges: {
+      node: {
+        name: string;
+        lastName: string;
+        avatar: {
+          url: string;
+        };
+      };
+    }[];
+  };
 }
 
 export interface FeaturedImage {

@@ -1,82 +1,47 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import type { PostNode } from "@/types/posts";
+import PostsList from "@/components/ui/PostsList.astro";
+import Pagination from "@/components/ui/Pagination.astro";
 
-const { categoryName, posts, currentPage, totalPages, slug, t, lang } = Astro.props;
+const { page, categoryName, slug, lang, t } = Astro.props;
 
+const { data: posts, currentPage, lastPage: totalPages } = page;
 ---
 
-<BaseLayout title={`Categoría: ${categoryName}`} isSubPage={true}>
-  <div class="container px-6 py-10 mx-auto">
-    <h1 class="text-3xl font-semibold text-gray-800 dark:text-white">
-      Artículos en: "{categoryName}"
-    </h1>
+<BaseLayout
+  title={`${t("categories.page.title")} ${categoryName}`}
+  isSubPage={true}
+>
+  <section class="bg-white">
+    <div class="container px-6 py-10 xl:py-20 mx-auto">
+      <div class="flex flex-col justify-center items-center pb-16">
+        <h1
+          class="text-3xl lg:text-4xl xl:text-5xl 2xl:text-7xl font-semibold text-purpureus-600 mb-4"
+        >
+          {categoryName}
+        </h1>
 
-    <div class="mt-8 space-y-8">
+        <p
+          class="text-md lg:text-xl text-gray-600 max-w-3xl mx-auto text-center"
+        >
+          {t("categories.page.subtitle")}
+          {categoryName}
+        </p>
+      </div>
+
+      <PostsList posts={posts} t={t} lang={lang} />
+
+      {/* Paginación */}
       {
-        posts.length > 0 ? (
-          posts.map((post: PostNode) => (
-            <article class="p-6 border border-gray-200 rounded-lg dark:border-gray-700">
-              <h2 class="text-2xl font-semibold text-gray-800 dark:text-white">
-                <a href={`/es/blog/${post.slug}`}>{post.title}</a>
-              </h2>
-              {/* Usamos una expresión regular para limpiar el excerpt */}
-              <p
-                class="mt-4 text-gray-600 dark:text-gray-300"
-                set:html={post.excerpt}
-              />
-              <a
-                href={`/es/blog/${post.slug}`}
-                class="inline-block mt-4 text-blue-500 hover:underline"
-              >
-                Leer más
-              </a>
-            </article>
-          ))
-        ) : (
-          <div class="text-center py-10">
-            <p class="text-lg text-gray-600 dark:text-gray-300">
-              Actualmente no hay artículos en esta categoría.
-            </p>
-          </div>
+        posts.length > 0 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            basePath={`/${lang}/blog/categories/${slug}`}
+            t={t}
+          />
         )
       }
     </div>
-
-    {/* Paginación */}
-    {
-      posts.length > 0 && (
-        // <div class="mt-12 flex justify-center">
-        //   {/* <Pagination
-        //     currentPage={currentPage}
-        //     totalPages={totalPages}
-        //     basePath={`/es/blog/categories/${slug}`}
-        //   /> */}
-        // </div>
-        <div class="flex justify-center mt-12 space-x-4">
-          {currentPage > 1 && (
-            <a
-              href={`/es/blog/categories/${slug}/${currentPage - 1}`}
-              class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
-            >
-              Anterior
-            </a>
-          )}
-
-          <span class="px-4 py-2 text-gray-700 dark:text-gray-200">
-            Página {currentPage} de {totalPages}
-          </span>
-
-          {currentPage < totalPages && (
-            <a
-              href={`/es/blog/categories/${slug}/${currentPage + 1}`}
-              class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
-            >
-              Siguiente
-            </a>
-          )}
-        </div>
-      )
-    }
-  </div>
+  </section>
 </BaseLayout>

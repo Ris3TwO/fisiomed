@@ -3,3 +3,4 @@ export * from "./readtime";
 export * from "./text";
 export * from "./path-generators";
 export * from "./seo";
+export * from "./colors";

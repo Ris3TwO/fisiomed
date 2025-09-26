@@ -1,0 +1,117 @@
+---
+import { LOCALES } from "@/i18n/config";
+import type { LanguageSelectorProps } from "@/types";
+
+const {
+  languages = [],
+  currentLang = "es",
+  currentPath = "/",
+  initialTextColor = "text-gray-600",
+}: LanguageSelectorProps = Astro.props;
+
+const localesRegexPart = LOCALES.join("|");
+const langPrefixRegex = new RegExp(`^/(${localesRegexPart})`);
+
+const pathWithoutLang = currentPath?.replace(langPrefixRegex, "");
+---
+
+<div id="language-switcher-wrapper" class="relative">
+  <button
+    id="language-selector-button"
+    class:list={[
+      "cursor-pointer flex items-center font-display font-medium px-2 py-1 rounded border hover:border-light-cyan-600 transition-all duration-200",
+      initialTextColor,
+      {
+        "border-light-cyan-600":
+          !initialTextColor.includes("text-federal-blue"),
+        "md:border-transparent":
+          !initialTextColor.includes("text-federal-blue"),
+      },
+    ]}
+    aria-haspopup="true"
+    aria-expanded="false"
+  >
+    <i class="ti ti-messages"></i>
+    <span class="mx-1 uppercase">{currentLang}</span>
+    <i class="ti ti-chevron-down text-xs transition-transform duration-300"></i>
+  </button>
+
+  <div
+    id="language-options"
+    class="hidden absolute right-0 top-full mt-2 w-12 md:w-16 rounded-md bg-white shadow-lg z-50 p-1 transition-opacity duration-300"
+    role="menu"
+  >
+    {
+      languages.map(({ code, label }) => {
+        const isActive = code === currentLang;
+        const linkUrl = `/${code}${pathWithoutLang}`;
+
+        return (
+          <a
+            href={linkUrl}
+            role="menuitem"
+            class:list={[
+              "block w-full text-center px-2 py-2 text-sm font-medium rounded-md transition-colors duration-200",
+              {
+                "bg-honolulu-blue-600 text-white": isActive,
+                "text-purpureus-600 hover:text-white hover:bg-honolulu-blue-600":
+                  !isActive,
+              },
+            ]}
+          >
+            {label}
+          </a>
+        );
+      })
+    }
+  </div>
+</div>
+
+<script>
+  function setupLanguageSwitcher(wrapper: HTMLElement) {
+    const button = wrapper.querySelector<HTMLButtonElement>(
+      "#language-selector-button"
+    );
+    const options = wrapper.querySelector<HTMLDivElement>("#language-options");
+    const chevron = wrapper.querySelector<HTMLElement>(".ti-chevron-down");
+
+    if (!button || !options) return;
+
+    const toggleDropdown = (show: boolean) => {
+      if (show) {
+        options.classList.remove("hidden");
+        button.setAttribute("aria-expanded", "true");
+        chevron?.classList.add("rotate-180");
+        // Escuchar por clics fuera para cerrar el menú
+        document.addEventListener("click", handleClickOutside, true);
+      } else {
+        options.classList.add("hidden");
+        button.setAttribute("aria-expanded", "false");
+        chevron?.classList.remove("rotate-180");
+        // Dejar de escuchar para no afectar el rendimiento
+        document.removeEventListener("click", handleClickOutside, true);
+      }
+    };
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!wrapper.contains(event.target as Node)) {
+        toggleDropdown(false);
+      }
+    };
+
+    button.addEventListener("click", (event) => {
+      event.stopPropagation(); // Evita que el clic en el botón se propague al document
+      const isHidden = options.classList.contains("hidden");
+      toggleDropdown(isHidden);
+    });
+  }
+
+  // Se ejecuta en cada carga de página, asegurando que los selectores de idioma funcionen
+  // incluso con View Transitions de Astro.
+  document.addEventListener("astro:page-load", () => {
+    const wrapper = document.getElementById("language-switcher-wrapper");
+    if (wrapper) {
+      setupLanguageSwitcher(wrapper);
+    }
+  });
+</script>

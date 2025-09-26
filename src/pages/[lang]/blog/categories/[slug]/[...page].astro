@@ -3,12 +3,13 @@ import CategoryPage from "@/components/pages/CategoryPage.astro";
 import { generateCategoryPaths } from "src/lib";
 import { DEFAULT_LOCALE, LOCALES, type Locale } from "src/i18n/config";
 import { useTranslations } from "@/i18n/utils";
+import type { GetStaticPathsOptions } from "astro";
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const allPages = [];
 
   for (const lang of LOCALES) {
-    const pagesForLang = await generateCategoryPaths(lang);
+    const pagesForLang = await generateCategoryPaths(lang, paginate);
     allPages.push(...pagesForLang);
   }
 

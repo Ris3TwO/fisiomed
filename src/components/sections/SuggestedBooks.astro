@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import { useTranslations } from "@/i18n/utils";
 import { DEFAULT_LOCALE, type Locale } from "@/i18n/config";
 import type { BookData } from "@/types";
+import { Image } from "astro:assets";
 
 const lang: Locale = Astro.currentLocale || DEFAULT_LOCALE;
 const t = useTranslations(lang);
@@ -34,10 +35,13 @@ export const prerender = true;
           books.map((book, index) => (
             <div class="p-8 space-y-3 border-2 rounded-xl bg-non-photo-blue-500 dark:bg-non-photo-blue-700">
               <div class="relative">
-                <img
+                <Image
                   class="object-contain object-top w-full h-64 rounded-lg lg:h-80"
                   src={`/assets/img/books/${book.data.img}`}
                   alt={book.data.title[lang]}
+                  width={400}
+                  height={400}
+                  format="webp"
                 />
 
                 <div class="absolute bottom-0 flex py-2 bg-white dark:bg-gray-900 ">

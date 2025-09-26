@@ -17,7 +17,7 @@ const PostCard: React.FC<{ post: WpPostEdge }> = ({ post }) => {
           height="400"
         />
 
-        <h3 class="capitalize text-xl font-semibold mt-4 text-federal-blue-600">
+        <h3 class="capitalize text-xl font-semibold mt-4 text-purpureus-600">
           {post.node.title}
         </h3>
 

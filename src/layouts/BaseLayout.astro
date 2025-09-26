@@ -63,7 +63,7 @@ const t = useTranslations(lang);
   </head>
   <body class="scroll-smooth">
     <Alert />
-    <Nav transition:persist />
+    <Nav transition:persist isSubPage={isSubPage} />
     <main>
       <slot />
     </main>

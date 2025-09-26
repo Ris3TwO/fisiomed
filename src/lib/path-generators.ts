@@ -1,7 +1,11 @@
 import type { Locale } from "@/i18n/config";
 import { getCategories, getPostsByCategorySlug } from "@/services/wordpress/wp";
+import type { PaginateFunction } from "astro";
 
-export async function generateCategoryPaths(lang: Locale) {
+export async function generateCategoryPaths(
+  lang: Locale,
+  paginate: PaginateFunction
+) {
   const pageSize = 10;
   const { nodes: categories } = await getCategories(100, lang);
 
@@ -15,51 +19,33 @@ export async function generateCategoryPaths(lang: Locale) {
       lang
     );
 
-    const pagesForCategory = [];
-
     if (allPosts.length === 0) {
-      const emptyProps = {
-        categoryName: category.name,
-        posts: [],
-        currentPage: 1,
-        totalPages: 1,
-      };
+      return [
+        {
+          params: { slug: category.slug, lang },
+          props: {
+            categoryName: category.name,
 
-      pagesForCategory.push({
-        params: { slug: category.slug, lang, page: undefined },
-        props: emptyProps,
-      });
-      return pagesForCategory;
+            page: {
+              data: [],
+              currentPage: 1,
+              lastPage: 1,
+              total: 0,
+            },
+          },
+        },
+      ];
     }
 
-    const totalPages = Math.ceil(allPosts.length / pageSize);
+    const paginatedRoutes = paginate(allPosts, {
+      pageSize: pageSize,
+      params: { slug: category.slug, lang },
+      props: { categoryName: category.name },
+    });
 
-    for (let i = 0; i < totalPages; i++) {
-      const currentPage = i + 1;
-      const postsForPage = allPosts.slice(i * pageSize, (i + 1) * pageSize);
-      const pageProps = {
-        categoryName: category.name,
-        posts: postsForPage,
-        currentPage,
-        totalPages,
-      };
-
-      pagesForCategory.push({
-        params: { slug: category.slug, lang, page: currentPage.toString() },
-        props: pageProps,
-      });
-
-      if (currentPage === 1) {
-        pagesForCategory.push({
-          params: { slug: category.slug, lang, page: undefined },
-          props: pageProps,
-        });
-      }
-    }
-    return pagesForCategory;
+    return paginatedRoutes;
   });
 
   const pagesForAllCategories = await Promise.all(promises);
-
   return pagesForAllCategories.flat();
 }

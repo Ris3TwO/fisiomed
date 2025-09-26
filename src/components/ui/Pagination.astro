@@ -1,0 +1,71 @@
+---
+const { currentPage, totalPages, basePath, t } = Astro.props;
+
+const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+const prevPageUrl =
+  currentPage === 2 ? basePath : `${basePath}/${currentPage - 1}`;
+const nextPageUrl = `${basePath}/${currentPage + 1}`;
+
+const isPrevDisabled = currentPage <= 1;
+const isNextDisabled = currentPage >= totalPages;
+
+const commonClasses =
+  "py-1 lsm:py-2.5 px-3 lsm:px-4.5 not-last:border-r-[0.8px] border-gray-3 ease-in duration-300";
+
+const disabledLinkClasses = "text-[#9db0d1] opacity-60 pointer-events-none";
+
+const enabledLinkClasses = "text-[#5A6A85] hover:text-dark hover:bg-gray";
+---
+
+<div class="mt-12 flex justify-center">
+  <div
+    class="inline-flex items-center justify-center rounded-md border-[0.8px] border-gray-3 shadow-1"
+  >
+    <a
+      href={isPrevDisabled ? undefined : prevPageUrl}
+      aria-disabled={isPrevDisabled}
+      tabindex={isPrevDisabled ? -1 : undefined}
+      class:list={[
+        commonClasses,
+        "rounded-l-md",
+        isPrevDisabled ? disabledLinkClasses : enabledLinkClasses,
+      ]}
+    >
+      {t("pagination.previous")}
+    </a>
+
+    {
+      pageNumbers.map((pageNum) => {
+        const isActive = pageNum === currentPage;
+        const pageUrl = pageNum === 1 ? basePath : `${basePath}/${pageNum}`;
+
+        return (
+          <a
+            href={pageUrl}
+            aria-current={isActive ? "page" : "false"}
+            class:list={[
+              commonClasses,
+              enabledLinkClasses,
+              { "bg-gray text-dark font-bold": isActive },
+            ]}
+          >
+            {pageNum}
+          </a>
+        );
+      })
+    }
+
+    <a
+      href={isNextDisabled ? undefined : nextPageUrl}
+      aria-disabled={isNextDisabled}
+      tabindex={isNextDisabled ? -1 : undefined}
+      class:list={[
+        commonClasses,
+        "rounded-r-md",
+        isNextDisabled ? disabledLinkClasses : enabledLinkClasses,
+      ]}
+    >
+      {t("pagination.next")}
+    </a>
+  </div>
+</div>

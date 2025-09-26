@@ -107,7 +107,7 @@ const Categories = ({
   return (
     <section class="py-20 lg:py-30 max-w-7xl mx-auto px-4 2xl:px-0">
       <div class="grid grid-cols-[20%_1fr] md:flex items-center md:justify-between relative">
-        <h2 class="text-4xl md:text-5xl xl:text-7xl uppercase text-federal-blue-600">
+        <h2 class="text-4xl md:text-5xl xl:text-7xl uppercase text-purpureus-600">
           {t("categories.title")}
         </h2>
         <div class="justify-self-end">

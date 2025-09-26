@@ -37,10 +37,11 @@
     "allPosts": "Ver todos los artículos",
     "category": "Categoria",
     "postTitle": "Título del artículo",
-    "noPosts": "No hay artículos disponibles",
+    "noPosts": "No hay artículos disponibles en este momento",
     "postReadtime": "minuto(s) de lectura"
   },
   "about": {
+    "title": "Sobre Nosotros",
     "message": "Sección aún en desarrollo. Aquí se mostrará información sobre el equipo, la misión y visión de FISIO MED UNERS, así como nuestras redes de ayuda."
   },
   "suggestedBooks": {
@@ -51,7 +52,11 @@
   },
   "categories": {
     "title": "Nuestras categorías",
-    "noCategories": "No hay categorías disponibles"
+    "noCategories": "No hay categorías disponibles",
+    "page": {
+      "title": "Artículos sobre: ",
+      "subtitle": "Explora todos nuestros artículos dedicados a este tema. Aquí encontrarás guías, consejos y recursos para profundizar en "
+    }
   },
   "team": {
     "title": "Nuestro equipo",
@@ -59,5 +64,13 @@
   },
   "alert": {
     "message": "¡Estamos trabajando en ello! Algunas partes del sitio aún están en desarrollo."
+  },
+  "blog": {
+    "title": "Nuestro Centro de Conocimiento",
+    "subtitle": "Explora nuestra colección completa de artículos sobre fisioterapia, recuperación y bienestar proactivo."
+  },
+  "pagination": {
+    "next": "Siguiente",
+    "previous": "Anterior"
   }
 }

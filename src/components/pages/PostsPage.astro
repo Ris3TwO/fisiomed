@@ -1,45 +1,42 @@
 ---
+import { useTranslations } from "@/i18n/utils";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import type { WpPost } from "@/types/wp";
+import PostsList from "@/components/ui/PostsList.astro";
+import Pagination from "@/components/ui/Pagination.astro";
 
-const { posts, lang } = Astro.props;
+const { page, lang } = Astro.props;
+
+const { data: posts, currentPage, lastPage: totalPages } = page;
+
+const t = useTranslations(lang);
 ---
 
 <BaseLayout title="Blog" isSubPage={true}>
-  <div class="container px-6 py-10 mx-auto">
-    <h1 class="text-3xl font-semibold text-gray-800 dark:text-white">
-      Artículos Recientes {lang}
-    </h1>
+  <section class="bg-white">
+    <div class="container px-6 py-10 xl:py-20 mx-auto">
+      <div class="flex flex-col justify-center items-center py-16">
+        <h1
+          class="text-3xl lg:text-4xl xl:text-5xl 2xl:text-7xl font-semibold text-purpureus-600 mb-4"
+        >
+          {t("blog.title")}
+        </h1>
 
-    <div class="mt-8 space-y-8">
+        <p class="text-md text-gray-600">{t("blog.subtitle")}</p>
+      </div>
+
+      <PostsList posts={posts} t={t} lang={lang} />
+
+      {/* Paginación */}
       {
-        posts.length > 0 ? (
-          posts.map((post: WpPost) => (
-            <article class="p-6 border border-gray-200 rounded-lg dark:border-gray-700">
-              <h2 class="text-2xl font-semibold text-gray-800 dark:text-white">
-                <a href={`/es/blog/${post.slug}`}>{post.title}</a>
-              </h2>
-              {/* Usamos una expresión regular para limpiar el excerpt */}
-              <p
-                class="mt-4 text-gray-600 dark:text-gray-300"
-                set:html={post.excerpt}
-              />
-              <a
-                href={`/es/blog/${post.slug}`}
-                class="inline-block mt-4 text-blue-500 hover:underline"
-              >
-                Leer más
-              </a>
-            </article>
-          ))
-        ) : (
-          <div class="text-center py-10">
-            <p class="text-lg text-gray-600 dark:text-gray-300">
-              No hay artículos disponibles en este momento.
-            </p>
-          </div>
+        posts.length > 0 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            basePath={`/${lang}/blog`}
+            t={t}
+          />
         )
       }
     </div>
-  </div>
+  </section>
 </BaseLayout>
